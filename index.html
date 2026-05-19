@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_22.html -->
+<html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ניהול הבית</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ניהול הבית">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI0IiBmaWxsPSIjRTBGMkZFIi8+PHRleHQgeD0iMjAiIHk9Ijc1IiBmb250LXNpemU9IjU1Ij7wn5qxPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSI5MCIgZm9udC1zaXplPSI0MCI+4pyFPC90ZXh0Pjwvc3ZnPg==">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --green: #0EA5E9;
+    --green-light: #E0F2FE;
+    --green-dark: #0369A1;
+    --purple: #6366F1;
+    --purple-light: #EEF2FF;
+    --purple-dark: #4338CA;
+    --red: #E24B4A;
+    --red-light: #FCEBEB;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --gray-bg: #F0F9FF;
+    --gray-border: rgba(0,0,0,0.1);
+    --gray-text: #666;
+    --white: #fff;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --radius: 12px;
+    --radius-sm: 8px;
+
+    /* Category colors */
+    --cat-0: #E0F2FE; --cat-0-dark: #0369A1;
+    --cat-1: #F0FDF4; --cat-1-dark: #166534;
+    --cat-2: #FFF7ED; --cat-2-dark: #9A3412;
+    --cat-3: #FDF4FF; --cat-3-dark: #7E22CE;
+    --cat-4: #FFFBEB; --cat-4-dark: #92400E;
+    --cat-5: #FFF1F2; --cat-5-dark: #9F1239;
+
+    /* Owner colors */
+    --own-0: #DBEAFE; --own-0-dark: #1D4ED8;
+    --own-1: #FCE7F3; --own-1-dark: #9D174D;
+    --own-2: #DCFCE7; --own-2-dark: #166534;
+    --own-3: #FEF3C7; --own-3-dark: #92400E;
+    --own-4: #F3E8FF; --own-4-dark: #7E22CE;
+    --own-5: #FFEDD5; --own-5-dark: #9A3412;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--gray-bg);
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+    font-size: 16px;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-border);
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-title { font-size: 22px; font-weight: 700; color: var(--text); }
+  .header-sub { font-size: 14px; color: var(--gray-text); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-border);
+    position: sticky;
+    top: 56px;
+    z-index: 99;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: none;
+    font-family: 'Heebo', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tab-btn.active-shop { color: var(--green-dark); border-bottom-color: var(--green); }
+  .tab-btn.active-tasks { color: var(--purple-dark); border-bottom-color: var(--purple); }
+
+  .section { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-border);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .card-title { font-size: 13px; font-weight: 600; }
+  .card-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ADD ROW */
+  .add-row {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-bottom: 1px solid var(--gray-border);
+    background: var(--gray-bg);
+  }
+  .add-row input, .add-row select {
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    padding: 7px 10px;
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--text);
+    outline: none;
+    direction: rtl;
+  }
+  .add-row input:focus, .add-row select:focus { border-color: var(--green); }
+  .add-row input { flex: 1; }
+  .add-row input.qty-input { width: 60px; flex: none; }
+  .add-row input.price-input { width: 70px; flex: none; }
+  .add-btn {
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .add-btn:hover { opacity: 0.85; }
+  .add-btn.green { background: var(--green); color: white; }
+  .add-btn.purple { background: var(--purple); color: white; }
+
+  /* ITEMS */
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--gray-border);
+    transition: background 0.15s;
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-row:hover { background: var(--gray-bg); }
+
+  .chk {
+    width: 22px; height: 22px;
+    border-radius: 5px;
+    border: 1.5px solid var(--gray-border);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .chk:hover { border-color: var(--green); }
+  .chk.checked-green { background: var(--green); border-color: var(--green); }
+  .chk.checked-purple { background: var(--purple); border-color: var(--purple); }
+
+  .item-name { flex: 1; font-size: 16px; color: var(--text); }
+  .item-name.done { text-decoration: line-through; color: var(--gray-text); }
+
+  .item-meta { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+  .tag {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .del-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-text);
+    font-size: 14px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .del-btn:hover { background: var(--red-light); color: var(--red); }
+
+  /* CATEGORY TABS */
+  .cat-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-border);
+    flex-wrap: wrap;
+    background: var(--white);
+  }
+  .cat-tab {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--gray-border);
+    background: var(--white);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .cat-tab:hover { border-color: var(--green); color: var(--green-dark); }
+  .cat-tab.active-cat { background: var(--green-light); color: var(--green-dark); border-color: var(--green); }
+  .cat-tab.add-cat { border-style: dashed; }
+
+  /* SORT BAR */
+  .sort-bar {
+    display: flex;
+    gap: 6px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--gray-border);
+    align-items: center;
+    background: var(--gray-bg);
+  }
+  .sort-label { font-size: 11px; color: var(--gray-text); }
+  .sort-btn {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--gray-border);
+    background: var(--white);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .sort-btn.active-sort { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple); }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    border-top: 1px solid var(--gray-border);
+    margin-top: 4px;
+  }
+
+  /* SECTION HEADER */
+  .section-hdr {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-text);
+    padding: 10px 14px 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* PURCHASED SECTION */
+  .purchased-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    cursor: pointer;
+    color: var(--gray-text);
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--gray-bg);
+    border-top: 1px solid var(--gray-border);
+    user-select: none;
+  }
+  .purchased-toggle:hover { color: var(--green-dark); }
+
+  /* IMPORT BTN */
+  .import-btn {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--green);
+    background: var(--green-light);
+    color: var(--green-dark);
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    transition: all 0.15s;
+  }
+  .import-btn:hover { background: var(--green); color: white; }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray-text);
+    font-size: 13px;
+  }
+
+  /* SETTINGS */
+  .settings-section {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .settings-section label { font-size: 12px; color: var(--gray-text); display: block; margin-bottom: 4px; }
+  .settings-input-row { display: flex; gap: 6px; }
+  .settings-input-row input {
+    flex: 1; font-family: 'Heebo', sans-serif; font-size: 13px;
+    padding: 6px 9px; border: 1px solid var(--gray-border);
+    border-radius: var(--radius-sm); outline: none; direction: rtl;
+  }
+  .settings-input-row input:focus { border-color: var(--purple); }
+  .member-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .member-tag {
+    font-size: 11px; padding: 3px 8px; border-radius: 20px;
+    background: var(--purple-light); color: var(--purple-dark);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .member-tag button {
+    background: none; border: none; cursor: pointer;
+    color: var(--purple-dark); font-size: 12px; line-height: 1; padding: 0;
+  }
+
+  /* MODAL OVERLAY */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 380px;
+    overflow: hidden;
+  }
+  .modal-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--gray-border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h3 { font-size: 15px; font-weight: 600; }
+  .modal-close { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--gray-text); }
+  .modal-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+  .modal-body label { font-size: 12px; color: var(--gray-text); display: block; margin-bottom: 3px; }
+  .modal-body input, .modal-body select, .modal-body textarea {
+    width: 100%; font-family: 'Heebo', sans-serif; font-size: 13px;
+    padding: 8px 10px; border: 1px solid var(--gray-border);
+    border-radius: var(--radius-sm); outline: none; direction: rtl; color: var(--text);
+  }
+  .modal-body input:focus, .modal-body select:focus { border-color: var(--purple); }
+  .modal-footer { padding: 10px 16px; border-top: 1px solid var(--gray-border); display: flex; gap: 8px; justify-content: flex-end; }
+  .btn-cancel { padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid var(--gray-border); background: var(--white); font-family: 'Heebo', sans-serif; font-size: 13px; cursor: pointer; }
+  .btn-save { padding: 7px 14px; border-radius: var(--radius-sm); border: none; background: var(--purple); color: white; font-family: 'Heebo', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { background: var(--gray-border); border-radius: 4px; height: 4px; flex: 1; max-width: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid var(--gray-border);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .price-option {
+    padding: 8px 10px;
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.15s;
+    font-size: 13px;
+  }
+  .price-option:hover { border-color: var(--green); background: var(--green-light); }
+  .price-option.selected { border-color: var(--green); background: var(--green-light); }
+
+  @media (max-width: 480px) {
+    .add-row { flex-wrap: wrap; }
+    .add-row input.price-input, .add-row input.qty-input { width: 55px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">🛒✅ ניהול הבית</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span id="sync-status" style="font-size: 11px; color: var(--green-dark);">✅ מסונכרן</span>
+    <button onclick="loadFromSheets().then(renderAll)" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:5px 8px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)" title="רענן">🔄</button>
+    <button onclick="openSettings()" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:5px 10px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)">⚙️ הגדרות</button>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active-shop" onclick="switchTab(&#39;shop&#39;)" id="tab-shop">
+    🛒 קניות <span id="shop-count" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px">5</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks">
+    ✅ משימות <span id="tasks-count" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px">8</span>
+  </button>
+</div>
+
+<!-- SHOPPING SECTION -->
+<div class="section active" id="section-shop">
+
+  <div class="card">
+    <!-- Category tabs -->
+    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (5)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
+
+    <!-- Add item row -->
+    <div class="add-row">
+      <input type="text" id="shop-name-input" placeholder="שם פריט..." onkeydown="if(event.key===&#39;Enter&#39;)addShopItem()">
+      <input type="number" class="qty-input" id="shop-qty-input" placeholder="כמות" min="1" value="1">
+      <input type="number" class="price-input" id="shop-price-input" placeholder="₪ מחיר">
+      <button class="add-btn green" onclick="addShopItem()">+ הוסף</button>
+    </div>
+
+    <!-- Column headers -->
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 14px;background:var(--gray-bg);border-bottom:1px solid var(--gray-border);font-size:12px;font-weight:600;color:var(--gray-text)">
+      <div style="width:22px;flex-shrink:0"></div>
+      <div style="flex:1">פריט</div>
+      <div style="width:45px;text-align:center">כמות</div>
+      <div style="width:60px;text-align:center">ליחידה</div>
+      <div style="width:60px;text-align:center">סה"כ</div>
+      <div style="width:80px"></div>
+    </div>
+
+    <!-- Items list -->
+    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div class="item-row" style="background: rgb(224, 242, 254);">
+        <div class="chk" onclick="purchaseItem(2)" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">חלב</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×4</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">₪7</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">₪29</div>
+        <button class="del-btn" onclick="editShopItem(2)" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(2)" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(2)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(224, 242, 254);">
+        <div class="chk" onclick="purchaseItem(9)" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">שוקולד</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×1</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">₪8</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">₪8</div>
+        <button class="del-btn" onclick="editShopItem(9)" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(9)" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(9)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(224, 242, 254);">
+        <div class="chk" onclick="purchaseItem(10)" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">אהבה</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×1</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">—</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">—</div>
+        <button class="del-btn" onclick="editShopItem(10)" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(10)" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(10)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(224, 242, 254);">
+        <div class="chk" onclick="purchaseItem(18)" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">מעדן חלב</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×1</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">₪6</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">₪6</div>
+        <button class="del-btn" onclick="editShopItem(18)" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(18)" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(18)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(224, 242, 254);">
+        <div class="chk" onclick="purchaseItem(20)" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">נייר טואלט</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×1</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">—</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">—</div>
+        <button class="del-btn" onclick="editShopItem(20)" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(20)" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(20)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div></div>
+
+    <!-- Purchased section -->
+    <div id="purchased-section" style="display: block;">
+      <div class="purchased-toggle" onclick="togglePurchased()">
+        <span id="purchased-arrow">▸</span>
+        <span>נרכשו</span>
+        <span id="purchased-count-badge" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">1</span>
+      </div>
+      <div id="purchased-list" style="display: block;"><div class="item-row">
+      <div class="chk checked-green" style="cursor:default">
+        <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+      </div>
+      <div style="flex:1">
+        <div class="item-name done">נייר טואלט</div>
+        <div class="item-meta" style="margin-top:2px">
+          <span class="tag" style="background:var(--green-light);color:var(--green-dark)">×1</span>
+          
+        </div>
+      </div>
+      <button class="del-btn" onclick="deletePurchased(19)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+    </div></div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-bar">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="color:var(--gray-text)">סה"כ משוער:</span>
+        <span id="shop-total" style="font-weight:600;color:var(--green-dark)">₪43</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="color:var(--gray-text)" id="shop-progress-text">1 מתוך 6</span>
+        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 17%; background: var(--green);"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TASKS SECTION -->
+<div class="section" id="section-tasks">
+
+  <div class="card">
+    <!-- Sort bar -->
+    <div class="sort-bar">
+      <span class="sort-label">מיון:</span>
+      <button class="sort-btn active-sort" id="sort-date-btn" onclick="setSort(&#39;date&#39;)">לפי תאריך</button>
+      <button class="sort-btn" id="sort-owner-btn" onclick="setSort(&#39;owner&#39;)">לפי אחראי</button>
+      <button class="sort-btn" id="sort-status-btn" onclick="setSort(&#39;status&#39;)">לפי סטטוס</button>
+    </div>
+
+    <!-- Add task button -->
+    <div style="padding:10px;border-bottom:1px solid var(--gray-border);background:var(--gray-bg)">
+      <button class="add-btn purple" style="width:100%" onclick="openAddTask()">+ הוסף משימה חדשה</button>
+    </div>
+
+    <!-- Column headers -->
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 14px;background:var(--gray-bg);border-bottom:1px solid var(--gray-border);font-size:11px;font-weight:600;color:var(--gray-text)">
+      <div style="width:18px;flex-shrink:0"></div>
+      <div style="flex:1">משימה</div>
+      <div style="width:70px;text-align:center">אחראי</div>
+      <div style="width:60px;text-align:center">תאריך</div>
+      <div style="width:28px"></div>
+    </div>
+
+    <!-- Tasks list -->
+    <div id="tasks-list"><div class="section-hdr">אבא</div><div class="item-row">
+    <div class="chk " onclick="toggleTask(1)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">תור למכון לב</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">אבא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">25.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(1)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(1)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(8)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">ריהוט למרפסת</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">אבא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">27.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(8)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(8)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(10)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מכסה מזגן בחדר של גל להדביק</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">אבא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span style="font-size:11px;color:var(--gray-border)">—</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(10)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(10)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="section-hdr">אמא</div><div class="item-row">
+    <div class="chk " onclick="toggleTask(5)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">בורקסים לגן</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">27.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(5)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(5)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(3)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מצרכים ללזניה</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">27.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(3)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(3)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(2)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">טנא לגל</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--amber-light);color:var(--amber);display:block;text-align:center;font-size:13px">20.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(2)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(2)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(6)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מתנה לקרין</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">28.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(6)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(6)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleTask(7)" title="סמן הושלם">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">לקנות תרופה</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        <span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span>
+      </div>
+      <div style="width:65px;text-align:center">
+        <span class="tag" style="background:var(--amber-light);color:var(--amber);display:block;text-align:center;font-size:13px">21.5</span>
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(7)" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(7)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  </div></div>
+
+    <!-- Completed tasks section -->
+    <div id="completed-section" style="display:none">
+      <div class="purchased-toggle" onclick="toggleCompleted()" style="border-top:1px solid var(--gray-border)">
+        <span id="completed-arrow">▸</span>
+        <span>הושלמו</span>
+        <span id="completed-count-badge" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">0</span>
+      </div>
+      <div id="completed-list" style="display: block;"></div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-bar">
+      <span style="color:var(--gray-text)" id="tasks-progress-text">0 מתוך 8 הושלמו</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="progress-wrap"><div class="progress-fill" id="tasks-progress-bar" style="width:0%;background:var(--purple)"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>⚙️ הגדרות</h3>
+      <button class="modal-close" onclick="closeSettings()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="settings-section" style="border:none;padding:0">
+        <label>אחראים (בני משפחה)</label>
+        <div class="settings-input-row">
+          <input type="text" id="member-input" placeholder="שם בן/בת משפחה..." onkeydown="if(event.key===&#39;Enter&#39;)addMember()">
+          <button class="add-btn purple" onclick="addMember()">הוסף</button>
+        </div>
+        <div class="member-list" id="member-list"><div class="member-tag">אמא<button onclick="removeMember(&#39;אמא&#39;)" title="הסר">×</button></div><div class="member-tag">אבא<button onclick="removeMember(&#39;אבא&#39;)" title="הסר">×</button></div></div>
+      </div>
+      <div class="settings-section" style="border:none;padding:0;border-top:1px solid var(--gray-border);padding-top:10px">
+        <label>קטגוריות קניות</label>
+        <div class="settings-input-row">
+          <input type="text" id="cat-input" placeholder="שם קטגוריה חדשה..." onkeydown="if(event.key===&#39;Enter&#39;)addCategory()">
+          <button class="add-btn green" onclick="addCategory()">הוסף</button>
+        </div>
+        <div class="member-list" id="cat-settings-list"><div class="member-tag" style="background: var(--green-light); color: var(--green-dark);">סופר<button onclick="removeCategory(&#39;סופר&#39;)" title="הסר">×</button></div><div class="member-tag" style="background: var(--green-light); color: var(--green-dark);">פארם<button onclick="removeCategory(&#39;פארם&#39;)" title="הסר">×</button></div><div class="member-tag" style="background: var(--green-light); color: var(--green-dark);">כלי בניין<button onclick="removeCategory(&#39;כלי בניין&#39;)" title="הסר">×</button></div></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeSettings()">סגור</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD TASK MODAL -->
+<div class="modal-overlay" id="add-task-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>משימה חדשה</h3>
+      <button class="modal-close" onclick="closeAddTask()">×</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label>תיאור המשימה *</label>
+        <input type="text" id="task-name-input" placeholder="מה צריך לעשות?">
+      </div>
+      <div>
+        <label>אחראי</label>
+        <select id="task-owner-input">
+          <option value="">ללא אחראי</option>
+        </select>
+      </div>
+      <div>
+        <label>תאריך יעד</label>
+        <input type="date" id="task-date-input">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeAddTask()">ביטול</button>
+      <button class="btn-save" onclick="addTask()">שמור</button>
+    </div>
+  </div>
+</div>
+
+<!-- PRICE SEARCH MODAL -->
+<div class="modal-overlay" id="price-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🔍 מחיר משוער</h3>
+      <button class="modal-close" onclick="closePriceModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="price-item-name" style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px"></div>
+      <div id="price-result-area">
+        <div style="display:flex;align-items:center;gap:10px;color:var(--gray-text);font-size:13px">
+          <div class="spinner"></div>
+          <span>מחפש מחירים...</span>
+        </div>
+      </div>
+      <div id="price-confirm-row" style="display:none;margin-top:10px">
+        <label style="font-size:12px;color:var(--gray-text);display:block;margin-bottom:4px">אשר מחיר ליחידה (₪)</label>
+        <div style="display:flex;gap:6px">
+          <input type="number" id="price-confirm-input" style="flex:1;font-family:&#39;Heebo&#39;,sans-serif;font-size:14px;padding:7px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);outline:none;direction:rtl" placeholder="מחיר ליחידה...">
+          <button class="btn-save" onclick="confirmPrice()">אשר</button>
+        </div>
+        <div style="font-size:11px;color:var(--gray-text);margin-top:5px">* המחיר משוער ועשוי להשתנות בין רשתות</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closePriceModal()">סגור</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMPORT MODAL -->
+<div class="modal-overlay" id="import-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🔄 ייבוא מנרכשו</h3>
+      <button class="modal-close" onclick="closeImport()">×</button>
+    </div>
+    <div class="modal-body" id="import-list" style="max-height:300px;overflow-y:auto"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeImport()">סגור</button>
+      <button class="btn-save" style="background:var(--green)" onclick="importSelected()">ייבא נבחרים</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────
+let state = {
+  categories: ['סופר', 'פארם', 'כלי בניין'],
+  activeCategory: 'סופר',
+  shopItems: [],
+  purchasedItems: [],
+  tasks: [],
+  members: ['אמא', 'אבא'],
+  taskSort: 'date',
+  purchasedOpen: false,
+  completedOpen: false,
+  nextShopId: 1,
+  nextTaskId: 1
+};
+
+const SUPABASE_URL = 'https://ucrsvzekjjyjdtadhxfw.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVjcnN2emVramp5amR0YWRoeGZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkwNTg3MTgsImV4cCI6MjA5NDYzNDcxOH0.CwXWPd2lU3IfEgt4eRaM8D_kRmBQSYA_zedV9CbIElY';
+let saveTimer = null;
+let isSyncing = false;
+
+function showSyncStatus(msg, color) {
+  const el = document.getElementById('sync-status');
+  if (el) { el.textContent = msg; el.style.color = color; }
+}
+
+function saveLocal() {
+  try { localStorage.setItem('home-app', JSON.stringify(state)); } catch(e){}
+}
+
+function save() {
+  saveLocal();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(syncToSupabase, 1200);
+}
+
+async function sbFetch(path, method, body) {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    method,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'resolution=merge-duplicates' : ''
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (method === 'GET') return res.json();
+  return res;
+}
+
+async function syncToSupabase() {
+  if (isSyncing) return;
+  isSyncing = true;
+  showSyncStatus('⏳ שומר...', 'var(--amber)');
+  try {
+    // Delete all rows then reinsert
+    await sbFetch('shopping?id=gte.0', 'DELETE', null);
+    await sbFetch('purchased?id=gte.0', 'DELETE', null);
+    await sbFetch('tasks?id=gte.0', 'DELETE', null);
+    await sbFetch('meta?key=neq.x', 'DELETE', null);
+
+    await Promise.all([
+      state.shopItems.length ? sbFetch('shopping', 'POST',
+        state.shopItems.map(i => ({id: i.id, name: i.name, qty: i.qty, price: i.price||null, category: i.category}))
+      ) : Promise.resolve(),
+      state.purchasedItems.length ? sbFetch('purchased', 'POST',
+        state.purchasedItems.map(i => ({id: i.id, name: i.name, qty: i.qty, price: i.price||null, category: i.category}))
+      ) : Promise.resolve(),
+      state.tasks.length ? sbFetch('tasks', 'POST',
+        state.tasks.map(t => ({id: t.id, name: t.name, owner: t.owner||'', due: t.due||null, done: t.done}))
+      ) : Promise.resolve(),
+      sbFetch('meta', 'POST', [
+        {key: 'categories', value: JSON.stringify(state.categories)},
+        {key: 'members', value: JSON.stringify(state.members)},
+        {key: 'nextShopId', value: String(state.nextShopId)},
+        {key: 'nextTaskId', value: String(state.nextTaskId)}
+      ])
+    ]);
+    showSyncStatus('✅ מסונכרן', 'var(--green-dark)');
+  } catch(e) {
+    showSyncStatus('⚠️ שגיאת סנכרון', 'var(--red)');
+  }
+  isSyncing = false;
+}
+
+async function loadFromSupabase() {
+  showSyncStatus('⏳ טוען...', 'var(--amber)');
+  try {
+    const [shopData, purchasedData, taskData, metaData] = await Promise.all([
+      sbFetch('shopping?select=*', 'GET'),
+      sbFetch('purchased?select=*', 'GET'),
+      sbFetch('tasks?select=*', 'GET'),
+      sbFetch('meta?select=*', 'GET'),
+    ]);
+
+    if (metaData && metaData.length) {
+      const meta = {};
+      metaData.forEach(r => { meta[r.key] = r.value; });
+      if (meta.categories) state.categories = JSON.parse(meta.categories);
+      if (meta.members) state.members = JSON.parse(meta.members);
+      if (meta.nextShopId) state.nextShopId = parseInt(meta.nextShopId) || 1;
+      if (meta.nextTaskId) state.nextTaskId = parseInt(meta.nextTaskId) || 1;
+    }
+    // if meta was empty, save defaults now
+    if (!metaData || !metaData.length) {
+      setTimeout(() => syncToSupabase(), 500);
+    }
+    if (shopData && shopData.length) {
+      state.shopItems = shopData.map(r => ({
+        id: r.id, name: r.name, qty: r.qty, price: r.price||null, category: r.category
+      }));
+    }
+    if (purchasedData && purchasedData.length) {
+      state.purchasedItems = purchasedData.map(r => ({
+        id: r.id, name: r.name, qty: r.qty, price: r.price||null, category: r.category
+      }));
+    }
+    if (taskData && taskData.length) {
+      state.tasks = taskData.map(r => ({
+        id: r.id, name: r.name, owner: r.owner||'', due: r.due||'', done: r.done
+      }));
+    }
+    if (!state.activeCategory || !state.categories.includes(state.activeCategory)) {
+      state.activeCategory = state.categories[0];
+    }
+    saveLocal();
+    showSyncStatus('✅ מסונכרן', 'var(--green-dark)');
+  } catch(e) {
+    try {
+      const d = localStorage.getItem('home-app');
+      if (d) Object.assign(state, JSON.parse(d));
+    } catch(e2){}
+    showSyncStatus('📴 מצב לא מקוון', 'var(--gray-text)');
+  }
+}
+
+// ─── COLOR HELPERS ────────────────────────────────────────
+const CAT_COLORS = [
+  {bg:'#E0F2FE',dark:'#0369A1'},{bg:'#F0FDF4',dark:'#166534'},
+  {bg:'#FFF7ED',dark:'#9A3412'},{bg:'#FDF4FF',dark:'#7E22CE'},
+  {bg:'#FFFBEB',dark:'#92400E'},{bg:'#FFF1F2',dark:'#9F1239'}
+];
+const OWNER_COLORS = [
+  {bg:'#DBEAFE',dark:'#1D4ED8'},{bg:'#FCE7F3',dark:'#9D174D'},
+  {bg:'#DCFCE7',dark:'#166534'},{bg:'#FEF3C7',dark:'#92400E'},
+  {bg:'#F3E8FF',dark:'#7E22CE'},{bg:'#FFEDD5',dark:'#9A3412'}
+];
+
+function getCatColor(cat) {
+  const idx = state.categories.indexOf(cat) % CAT_COLORS.length;
+  return CAT_COLORS[idx >= 0 ? idx : 0];
+}
+
+function getOwnerColor(owner) {
+  const idx = state.members.indexOf(owner) % OWNER_COLORS.length;
+  return OWNER_COLORS[idx >= 0 ? idx : 0];
+}
+
+function renderAll() {
+  renderCatTabs();
+  renderShopItems();
+  renderTasks();
+  renderMemberList();
+  renderCatSettings();
+  updateCounts();
+}
+
+// ─── TABS ─────────────────────────────────────────────────
+function switchTab(tab) {
+  document.getElementById('section-shop').classList.toggle('active', tab === 'shop');
+  document.getElementById('section-tasks').classList.toggle('active', tab === 'tasks');
+  document.getElementById('tab-shop').className = 'tab-btn' + (tab === 'shop' ? ' active-shop' : '');
+  document.getElementById('tab-tasks').className = 'tab-btn' + (tab === 'tasks' ? ' active-tasks' : '');
+}
+
+// ─── CATEGORIES ───────────────────────────────────────────
+function renderCatTabs() {
+  const c = document.getElementById('cat-tabs-container');
+  c.innerHTML = '';
+  state.categories.forEach(cat => {
+    const btn = document.createElement('button');
+    const catColor = getCatColor(cat);
+    const isActive = cat === state.activeCategory;
+    btn.className = 'cat-tab' + (isActive ? ' active-cat' : '');
+    if (isActive) {
+      btn.style.background = catColor.bg;
+      btn.style.color = catColor.dark;
+      btn.style.borderColor = catColor.dark;
+    } else {
+      btn.style.background = catColor.bg + '88';
+      btn.style.color = catColor.dark;
+      btn.style.opacity = '0.7';
+    }
+    const count = state.shopItems.filter(i => i.category === cat).length;
+    btn.textContent = cat + (count > 0 ? ` (${count})` : '');
+    btn.onclick = () => { state.activeCategory = cat; renderCatTabs(); renderShopItems(); };
+    c.appendChild(btn);
+  });
+  const addBtn = document.createElement('button');
+  addBtn.className = 'cat-tab add-cat';
+  addBtn.textContent = '+ קטגוריה';
+  addBtn.onclick = openSettings;
+  c.appendChild(addBtn);
+
+  const imp = document.createElement('button');
+  imp.className = 'import-btn';
+  imp.style.marginRight = 'auto';
+  imp.textContent = '🔄 ייבוא מנרכשו';
+  imp.onclick = openImport;
+  c.appendChild(imp);
+}
+
+function addCategory() {
+  const inp = document.getElementById('cat-input');
+  const val = inp.value.trim();
+  if (!val || state.categories.includes(val)) return;
+  state.categories.push(val);
+  inp.value = '';
+  save();
+  renderCatTabs();
+  renderCatSettings();
+}
+
+function renderCatSettings() {
+  const el = document.getElementById('cat-settings-list');
+  el.innerHTML = '';
+  state.categories.forEach(cat => {
+    const tag = document.createElement('div');
+    tag.className = 'member-tag';
+    tag.style.background = 'var(--green-light)';
+    tag.style.color = 'var(--green-dark)';
+    tag.innerHTML = cat + `<button onclick="removeCategory('${cat}')" title="הסר">×</button>`;
+    el.appendChild(tag);
+  });
+}
+
+function removeCategory(cat) {
+  if (state.categories.length <= 1) return;
+  state.categories = state.categories.filter(c => c !== cat);
+  if (state.activeCategory === cat) state.activeCategory = state.categories[0];
+  save(); renderAll();
+}
+
+// ─── SHOPPING ─────────────────────────────────────────────
+async function addShopItem() {
+  const name = document.getElementById('shop-name-input').value.trim();
+  if (!name) return;
+  const qty = parseInt(document.getElementById('shop-qty-input').value) || 1;
+  const manualPrice = parseFloat(document.getElementById('shop-price-input').value) || null;
+  const item = { id: state.nextShopId++, name, qty, price: manualPrice, category: state.activeCategory };
+  state.shopItems.push(item);
+  document.getElementById('shop-name-input').value = '';
+  document.getElementById('shop-qty-input').value = '1';
+  document.getElementById('shop-price-input').value = '';
+  save(); renderShopItems(); renderCatTabs(); updateCounts();
+
+  // Auto-fetch price if not entered manually
+  if (!manualPrice) {
+    autoFetchPrice(item.id, name);
+  }
+}
+
+async function autoFetchPrice(itemId, itemName) {
+  // Auto price fetch not available - skipped
+}
+
+function openPriceSearch(id) {
+  const item = state.shopItems.find(i => i.id === id);
+  if (!item) return;
+  const query = encodeURIComponent('מחיר ' + item.name + ' סופרמרקט ישראל');
+  window.open('https://www.google.com/search?q=' + query, '_blank');
+}
+
+function renderShopItems() {
+  const el = document.getElementById('shop-items-list');
+  const items = state.shopItems.filter(i => i.category === state.activeCategory);
+  const catColor = getCatColor(state.activeCategory);
+  el.style.background = catColor.bg;
+  if (items.length === 0) {
+    el.innerHTML = '<div class="empty">אין פריטים בקטגוריה זו</div>';
+  } else {
+    el.innerHTML = '';
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      row.style.background = catColor.bg;
+      row.innerHTML = `
+        <div class="chk" onclick="purchaseItem(${item.id})" title="סמן כנרכש"></div>
+        <div style="flex:1;font-size:15px;color:var(--text);font-weight:500">${item.name}</div>
+        <div style="width:45px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">×${item.qty}</div>
+        <div style="width:60px;text-align:center;font-size:15px;font-weight:500;color:var(--text)">${item.price ? '₪' + item.price.toFixed(0) : '—'}</div>
+        <div style="width:60px;text-align:center;font-size:17px;font-weight:700;color:var(--amber)">${item.price ? '₪' + (item.price * item.qty).toFixed(0) : '—'}</div>
+        <button class="del-btn" onclick="editShopItem(${item.id})" title="ערוך" style="font-size:15px">✏️</button>
+        <button class="del-btn" onclick="openPriceSearch(${item.id})" title="חפש מחיר בגוגל" style="font-size:15px">🔍</button>
+        <button class="del-btn" onclick="deleteShopItem(${item.id})" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      `;
+      el.appendChild(row);
+    });
+  }
+  renderPurchased();
+  updateShopSummary();
+}
+
+function purchaseItem(id) {
+  const idx = state.shopItems.findIndex(i => i.id === id);
+  if (idx === -1) return;
+  const item = state.shopItems.splice(idx, 1)[0];
+  // avoid duplicates
+  if (!state.purchasedItems.find(p => p.name === item.name && p.category === item.category)) {
+    state.purchasedItems.push(item);
+  }
+  save(); renderShopItems(); renderCatTabs(); updateCounts();
+}
+
+function editShopItem(id) {
+  const item = state.shopItems.find(i => i.id === id);
+  if (!item) return;
+  const newName = prompt('שם פריט:', item.name);
+  if (newName === null) return;
+  const newQty = prompt('כמות:', item.qty);
+  if (newQty === null) return;
+  const newPrice = prompt('מחיר ליחידה (₪):', item.price || '');
+  if (newPrice === null) return;
+  item.name = newName.trim() || item.name;
+  item.qty = parseInt(newQty) || item.qty;
+  item.price = parseFloat(newPrice) || null;
+  save(); renderShopItems();
+}
+
+function editTask(id) {
+  const task = state.tasks.find(t => t.id === id);
+  if (!task) return;
+  const newName = prompt('תיאור משימה:', task.name);
+  if (newName === null) return;
+  const ownerOptions = ['ללא', ...state.members].join(' / ');
+  const newOwner = prompt('אחראי (' + ownerOptions + '):', task.owner || '');
+  if (newOwner === null) return;
+  const newDue = prompt('תאריך יעד (YYYY-MM-DD):', task.due || '');
+  if (newDue === null) return;
+  task.name = newName.trim() || task.name;
+  task.owner = newOwner === 'ללא' ? '' : (state.members.includes(newOwner) ? newOwner : task.owner);
+  task.due = newDue.trim();
+  save(); renderTasks();
+}
+
+function deleteShopItem(id) {
+  state.shopItems = state.shopItems.filter(i => i.id !== id);
+  save(); renderShopItems(); renderCatTabs(); updateCounts();
+}
+
+function renderPurchased() {
+  const items = state.purchasedItems.filter(i => i.category === state.activeCategory);
+  const section = document.getElementById('purchased-section');
+  const list = document.getElementById('purchased-list');
+  const badge = document.getElementById('purchased-count-badge');
+  section.style.display = items.length > 0 ? 'block' : 'none';
+  badge.textContent = items.length;
+  if (!state.purchasedOpen) { list.style.display = 'none'; return; }
+  list.style.display = 'block';
+  list.innerHTML = '';
+  items.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <div class="chk checked-green" style="cursor:default">
+        <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div style="flex:1">
+        <div class="item-name done">${item.name}</div>
+        <div class="item-meta" style="margin-top:2px">
+          <span class="tag" style="background:var(--green-light);color:var(--green-dark)">×${item.qty}</span>
+          ${item.price ? `<span class="tag" style="background:var(--amber-light);color:var(--amber)">₪${(item.price * item.qty).toFixed(0)}</span>` : ''}
+        </div>
+      </div>
+      <button class="del-btn" onclick="deletePurchased(${item.id})" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function deletePurchased(id) {
+  state.purchasedItems = state.purchasedItems.filter(i => i.id !== id);
+  save(); renderPurchased();
+}
+
+function togglePurchased() {
+  state.purchasedOpen = !state.purchasedOpen;
+  document.getElementById('purchased-arrow').textContent = state.purchasedOpen ? '▾' : '▸';
+  renderPurchased();
+}
+
+function updateShopSummary() {
+  const items = state.shopItems.filter(i => i.category === state.activeCategory);
+  const total = items.reduce((s, i) => s + (i.price ? i.price * i.qty : 0), 0);
+  const purchased = state.purchasedItems.filter(i => i.category === state.activeCategory).length;
+  const all = items.length + purchased;
+  document.getElementById('shop-total').textContent = '₪' + total.toFixed(0);
+  document.getElementById('shop-progress-text').textContent = purchased + ' מתוך ' + all;
+  const pct = all > 0 ? Math.round(purchased / all * 100) : 0;
+  document.getElementById('shop-progress-bar').style.width = pct + '%';
+}
+
+// ─── PRICE SEARCH ─────────────────────────────────────────
+let currentPriceItemId = null;
+
+function openPriceSearch(id) {
+  const item = state.shopItems.find(i => i.id === id);
+  if (!item) return;
+  const query = encodeURIComponent('מחיר ' + item.name + ' סופרמרקט ישראל');
+  window.open('https://www.google.com/search?q=' + query, '_blank');
+}
+
+async function fetchPrice(itemName) {
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+        messages: [{
+          role: 'user',
+          content: `חפש מחיר עדכני בישראל עבור המוצר: "${itemName}". 
+חפש ברשתות שופרסל, רמי לוי, ויקטורי, מחסני השוק.
+החזר תשובה בפורמט JSON בלבד (ללא טקסט נוסף):
+{
+  "min": מחיר מינימום מספרי,
+  "max": מחיר מקסימום מספרי,
+  "avg": מחיר ממוצע מספרי,
+  "note": "הסבר קצר בעברית",
+  "found": true/false
+}
+אם לא מצאת מחיר ספציפי, הערך found=false ותן הערכה סבירה.`
+        }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    let result;
+    try { result = JSON.parse(clean); } catch(e) {
+      const match = clean.match(/\{[\s\S]*\}/);
+      if (match) result = JSON.parse(match[0]);
+    }
+    showPriceResult(result, itemName);
+  } catch(err) {
+    document.getElementById('price-result-area').innerHTML = `
+      <div style="font-size:13px;color:var(--red);padding:8px 0">לא ניתן לחפש מחיר כרגע. הזן ידנית.</div>`;
+    document.getElementById('price-confirm-row').style.display = 'block';
+  }
+}
+
+function showPriceResult(result, itemName) {
+  const area = document.getElementById('price-result-area');
+  if (!result || !result.found) {
+    area.innerHTML = `<div style="font-size:13px;color:var(--amber);padding:4px 0">לא נמצא מחיר מדויק — הזן ידנית</div>`;
+    document.getElementById('price-confirm-row').style.display = 'block';
+    return;
+  }
+  area.innerHTML = `
+    <div style="margin-bottom:8px">
+      <div style="font-size:12px;color:var(--gray-text);margin-bottom:6px">מחירים משוערים ברשתות:</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <div style="flex:1;min-width:70px;background:var(--green-light);border-radius:var(--radius-sm);padding:8px;text-align:center">
+          <div style="font-size:10px;color:var(--green-dark)">מינימום</div>
+          <div style="font-size:16px;font-weight:600;color:var(--green-dark)">₪${result.min}</div>
+        </div>
+        <div style="flex:1;min-width:70px;background:var(--amber-light);border-radius:var(--radius-sm);padding:8px;text-align:center">
+          <div style="font-size:10px;color:var(--amber)">ממוצע</div>
+          <div style="font-size:16px;font-weight:600;color:var(--amber)">₪${result.avg}</div>
+        </div>
+        <div style="flex:1;min-width:70px;background:var(--red-light);border-radius:var(--radius-sm);padding:8px;text-align:center">
+          <div style="font-size:10px;color:var(--red)">מקסימום</div>
+          <div style="font-size:16px;font-weight:600;color:var(--red)">₪${result.max}</div>
+        </div>
+      </div>
+      ${result.note ? `<div style="font-size:11px;color:var(--gray-text);background:var(--gray-bg);padding:6px 8px;border-radius:var(--radius-sm)">${result.note}</div>` : ''}
+    </div>
+    <div style="font-size:12px;color:var(--gray-text);margin-bottom:4px">לחץ על מחיר לבחירה או הזן ידנית:</div>
+    <div style="display:flex;gap:6px;margin-bottom:4px">
+      <button class="price-option" style="flex:1" onclick="selectPrice(${result.min})">מינימום ₪${result.min}</button>
+      <button class="price-option" style="flex:1" onclick="selectPrice(${result.avg})">ממוצע ₪${result.avg}</button>
+    </div>
+  `;
+  document.getElementById('price-confirm-input').value = result.avg;
+  document.getElementById('price-confirm-row').style.display = 'block';
+}
+
+function selectPrice(price) {
+  document.getElementById('price-confirm-input').value = price;
+  document.querySelectorAll('.price-option').forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+}
+
+function confirmPrice() {
+  const val = parseFloat(document.getElementById('price-confirm-input').value);
+  if (!val || val <= 0) return;
+  const item = state.shopItems.find(i => i.id === currentPriceItemId);
+  if (item) { item.price = val; save(); renderShopItems(); }
+  closePriceModal();
+}
+
+function closePriceModal() {
+  document.getElementById('price-modal').classList.remove('open');
+  currentPriceItemId = null;
+}
+
+// ─── IMPORT ───────────────────────────────────────────────
+function openImport() {
+  const el = document.getElementById('import-list');
+  const items = state.purchasedItems.filter(i => i.category === state.activeCategory);
+  if (items.length === 0) {
+    el.innerHTML = '<div class="empty">אין פריטים ברשימת נרכשו לייבוא</div>';
+  } else {
+    el.innerHTML = '';
+    items.forEach((item, idx) => {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      row.innerHTML = `
+        <input type="checkbox" id="imp-${idx}" value="${idx}" style="width:20px;height:20px;cursor:pointer;flex-shrink:0">
+        <label for="imp-${idx}" style="flex:1;font-size:15px;cursor:pointer;padding-right:8px">${item.name} ×${item.qty}</label>
+      `;
+      el.appendChild(row);
+    });
+  }
+  document.getElementById('import-modal').classList.add('open');
+}
+
+function closeImport() { document.getElementById('import-modal').classList.remove('open'); }
+
+function importSelected() {
+  const items = state.purchasedItems.filter(i => i.category === state.activeCategory);
+  const checks = document.querySelectorAll('#import-list input[type=checkbox]:checked');
+  const toImport = [];
+  checks.forEach(chk => {
+    const idx = parseInt(chk.value);
+    const item = items[idx];
+    if (item) toImport.push(item);
+  });
+  toImport.forEach(item => {
+    const alreadyExists = state.shopItems.find(s => s.name === item.name && s.category === item.category);
+    if (!alreadyExists) {
+      state.shopItems.push({ ...item, id: state.nextShopId++ });
+    }
+    // Remove from purchased
+    state.purchasedItems = state.purchasedItems.filter(p => p.id !== item.id);
+  });
+  save(); closeImport(); renderShopItems(); renderPurchased(); renderCatTabs(); updateCounts();
+}
+
+// ─── TASKS ────────────────────────────────────────────────
+function openAddTask() {
+  const sel = document.getElementById('task-owner-input');
+  sel.innerHTML = '<option value="">ללא אחראי</option>';
+  state.members.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    sel.appendChild(o);
+  });
+  document.getElementById('task-name-input').value = '';
+  document.getElementById('task-date-input').value = '';
+  document.getElementById('add-task-modal').classList.add('open');
+}
+function closeAddTask() { document.getElementById('add-task-modal').classList.remove('open'); }
+
+function addTask() {
+  const name = document.getElementById('task-name-input').value.trim();
+  if (!name) return;
+  const owner = document.getElementById('task-owner-input').value;
+  const due = document.getElementById('task-date-input').value;
+  state.tasks.push({ id: state.nextTaskId++, name, owner, due, done: false });
+  save(); closeAddTask(); renderTasks(); updateCounts();
+}
+
+function setSort(s) {
+  state.taskSort = s;
+  ['date','owner','status'].forEach(k => {
+    document.getElementById('sort-'+k+'-btn').classList.toggle('active-sort', k === s);
+  });
+  renderTasks();
+}
+
+function renderTasks() {
+  const el = document.getElementById('tasks-list');
+  const pending = state.tasks.filter(t => !t.done);
+
+  if (pending.length === 0) {
+    el.innerHTML = '<div class="empty">אין משימות פתוחות — הוסף משימה חדשה!</div>';
+  } else {
+    let sorted = [...pending];
+    if (state.taskSort === 'date') {
+      sorted.sort((a,b) => {
+        if (!a.due && !b.due) return 0;
+        if (!a.due) return 1;
+        if (!b.due) return -1;
+        return a.due.localeCompare(b.due);
+      });
+    } else if (state.taskSort === 'owner') {
+      sorted.sort((a,b) => (a.owner||'ת').localeCompare(b.owner||'ת', 'he'));
+    }
+
+    el.innerHTML = '';
+
+    if (state.taskSort === 'owner') {
+      const groups = {};
+      sorted.forEach(t => {
+        const key = t.owner || 'ללא אחראי';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(t);
+      });
+      Object.entries(groups).forEach(([grp, tasks]) => {
+        const hdr = document.createElement('div');
+        hdr.className = 'section-hdr';
+        hdr.textContent = grp;
+        el.appendChild(hdr);
+        tasks.forEach(t => el.appendChild(makeTaskRow(t)));
+      });
+    } else {
+      sorted.forEach(t => el.appendChild(makeTaskRow(t)));
+    }
+  }
+
+  renderCompleted();
+  updateTasksSummary();
+}
+
+function renderCompleted() {
+  const done = state.tasks.filter(t => t.done);
+  const section = document.getElementById('completed-section');
+  const list = document.getElementById('completed-list');
+  const badge = document.getElementById('completed-count-badge');
+  section.style.display = done.length > 0 ? 'block' : 'none';
+  badge.textContent = done.length;
+  if (!state.completedOpen) { list.style.display = 'none'; return; }
+  list.style.display = 'block';
+  list.innerHTML = '';
+  done.forEach(t => {
+    const row = makeTaskRow(t, true);
+    list.appendChild(row);
+  });
+}
+
+function toggleCompleted() {
+  state.completedOpen = !state.completedOpen;
+  document.getElementById('completed-arrow').textContent = state.completedOpen ? '▾' : '▸';
+  renderCompleted();
+}
+
+function makeTaskRow(task, isCompletedSection = false) {
+  const row = document.createElement('div');
+  row.className = 'item-row';
+  const today = new Date().toISOString().split('T')[0];
+  const isOverdue = task.due && task.due < today && !task.done;
+  const isUrgent = task.due && task.due <= new Date(Date.now() + 2*86400000).toISOString().split('T')[0] && !task.done;
+
+  row.innerHTML = `
+    <div class="chk ${task.done ? 'checked-purple' : ''}" onclick="toggleTask(${task.id})" title="${task.done ? 'החזר לפתוח' : 'סמן הושלם'}">
+      ${task.done ? '<svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name ${task.done ? 'done' : ''}" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${task.name}</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center">
+        ${task.owner ? (() => { const c = getOwnerColor(task.owner); return `<span class="tag" style="background:${c.bg};color:${c.dark};display:block;text-align:center;font-size:13px">${task.owner}</span>`; })()
+          : `<span style="font-size:11px;color:var(--gray-border)">—</span>`}
+      </div>
+      <div style="width:65px;text-align:center">
+        ${task.due
+          ? `<span class="tag" style="background:${task.done ? 'var(--green-light);color:var(--green-dark)' : isOverdue ? 'var(--red-light);color:var(--red)' : isUrgent ? 'var(--amber-light);color:var(--amber)' : 'var(--gray-bg);color:var(--gray-text)'};display:block;text-align:center;font-size:13px">${new Date(task.due).toLocaleDateString('he-IL',{day:'numeric',month:'numeric'})}</span>`
+          : `<span style="font-size:11px;color:var(--gray-border)">—</span>`}
+      </div>
+    </div>
+    <button class="del-btn" onclick="editTask(${task.id})" title="ערוך" style="font-size:15px">✏️</button>
+    <button class="del-btn" onclick="deleteTask(${task.id})" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+  `;
+  return row;
+}
+
+function toggleTask(id) {
+  const t = state.tasks.find(t => t.id === id);
+  if (!t) return;
+  t.done = !t.done;
+  save(); renderTasks(); updateCounts();
+}
+
+function deleteTask(id) {
+  state.tasks = state.tasks.filter(t => t.id !== id);
+  save(); renderTasks(); updateCounts();
+}
+
+function updateTasksSummary() {
+  const done = state.tasks.filter(t => t.done).length;
+  const all = state.tasks.length;
+  const pct = all > 0 ? Math.round(done / all * 100) : 0;
+  document.getElementById('tasks-progress-text').textContent = done + ' מתוך ' + all + ' הושלמו';
+  document.getElementById('tasks-progress-bar').style.width = pct + '%';
+}
+
+// ─── MEMBERS ──────────────────────────────────────────────
+function addMember() {
+  const inp = document.getElementById('member-input');
+  const val = inp.value.trim();
+  if (!val || state.members.includes(val)) return;
+  state.members.push(val);
+  inp.value = '';
+  save(); renderMemberList();
+}
+
+function removeMember(name) {
+  state.members = state.members.filter(m => m !== name);
+  save(); renderMemberList();
+}
+
+function renderMemberList() {
+  const el = document.getElementById('member-list');
+  el.innerHTML = '';
+  state.members.forEach(m => {
+    const tag = document.createElement('div');
+    tag.className = 'member-tag';
+    tag.innerHTML = m + `<button onclick="removeMember('${m}')" title="הסר">×</button>`;
+    el.appendChild(tag);
+  });
+}
+
+// ─── SETTINGS ─────────────────────────────────────────────
+function openSettings() {
+  renderMemberList(); renderCatSettings();
+  document.getElementById('settings-modal').classList.add('open');
+}
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+  renderAll();
+}
+
+// ─── COUNTS ───────────────────────────────────────────────
+function updateCounts() {
+  const shopCount = state.shopItems.length;
+  const taskCount = state.tasks.filter(t => !t.done).length;
+  document.getElementById('shop-count').textContent = shopCount || '';
+  document.getElementById('tasks-count').textContent = taskCount || '';
+}
+
+// ─── INIT ─────────────────────────────────────────────────
+(async () => {
+  try {
+    const d = localStorage.getItem('home-app');
+    if (d) Object.assign(state, JSON.parse(d));
+  } catch(e){}
+  renderAll();
+  await loadFromSupabase();
+  renderAll();
+  setInterval(async () => {
+    if (!isSyncing) { await loadFromSupabase(); renderAll(); }
+  }, 300000);
+})();
+</script>
+
+
+</body></html>
