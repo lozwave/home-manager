@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_27.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_29.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -435,7 +435,7 @@
 
 <div class="tabs">
   <button class="tab-btn active-shop" onclick="switchTab(&#39;shop&#39;)" id="tab-shop">
-    🛒 קניות <span id="shop-count" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px">25</span>
+    🛒 קניות <span id="shop-count" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px">23</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks">
     ✅ משימות <span id="tasks-count" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px">7</span>
@@ -447,7 +447,7 @@
 
   <div class="card">
     <!-- Category tabs -->
-    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (21)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם (2)</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (2)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
+    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (19)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם (2)</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (2)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap">
@@ -469,7 +469,63 @@
     </div>
 
     <!-- Items list -->
-    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">13</span></div><div class="item-row" style="background: white;">
+    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">4</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(23)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נייר כסף</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪17</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪17</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(23)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(23, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-23" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(23);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(23);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(54)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פסטה ברילה</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×2</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪16</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(54)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(54, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-54" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(54);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(54);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(52)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">רסק עגבניות</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×4</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪3</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪12</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(52)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(52, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-52" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(52);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(52);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(47)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שקיות לסנדביצ׳ים</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪10</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪10</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(47)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(47, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-47" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(47);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(47);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">חטיפים וממתקים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">3</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(55)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">אם אנד אם בטעם שוקולד</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
@@ -484,6 +540,104 @@
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(41)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">צינורות קורנפלקס</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪15</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪15</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(41)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(41, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-41" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(41);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(41);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(39)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שוקולד</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪8</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(39)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(39, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-39" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(39);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(39);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">ירקות ופירות</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(57)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">לימון</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪8</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(57)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(57, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-57" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(57);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(57);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(58)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">עגבניות</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪4</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪4</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(58)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(58, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-58" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(58);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(58);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">כלי ניקוי</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(50)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מרכך כביסה</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪20</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪20</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(50)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(50, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-50" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(50);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(50);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">לחמים ומאפים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(43)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">לחם עננים</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪18</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪18</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(43)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(43, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-43" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(43);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(43);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(40)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פיתות כוסמין</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪15</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪15</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(40)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(40, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-40" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(40);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(40);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">4</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(44)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">אקטימל</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
@@ -523,202 +677,6 @@
             <div id="item-menu-49" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
               <div onclick="editShopItem(49);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
               <div onclick="deleteShopItem(49);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(57)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">לימון</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪8</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(57)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(57, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-57" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(57);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(57);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(46)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מעדן חלב</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪6</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪6</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(46)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(46, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-46" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(46);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(46);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(50)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מרכך כביסה</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪20</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪20</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(50)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(50, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-50" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(50);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(50);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(51)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נייר טואלט</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪40</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪40</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(51)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(51, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-51" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(51);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(51);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(58)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">עגבניות</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪4</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪4</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(58)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(58, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-58" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(58);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(58);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(54)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פסטה ברילה</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×2</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪16</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(54)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(54, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-54" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(54);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(54);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(59)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קפה</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(59)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(59, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-59" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(59);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(59);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(52)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">רסק עגבניות</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×4</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪3</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪12</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(52)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(52, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-52" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(52);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(52);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(47)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שקיות לסנדביצ׳ים</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪10</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪10</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(47)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(47, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-47" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(47);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(47);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">חטיפים וממתקים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(41)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">צינורות קורנפלקס</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪15</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪15</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(41)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(41, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-41" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(41);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(41);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(39)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שוקולד</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪8</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪8</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(39)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(39, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-39" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(39);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(39);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">לחמים ומאפים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(43)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">לחם עננים</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪18</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪18</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(43)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(43, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-43" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(43);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(43);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(40)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פיתות כוסמין</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪15</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪15</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(40)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(40, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-40" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(40);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(40);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(23)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נייר כסף</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪17</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪17</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(23)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(23, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-23" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(23);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(23);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
@@ -763,7 +721,33 @@
               <div onclick="deleteShopItem(26);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">רחצה</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(51)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נייר טואלט</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪40</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪40</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(51)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(51, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-51" style="display:none;position:absolute;left:0;top:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(51);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(51);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
         </div></div>
+
+    <!-- Summary -->
+    <div class="summary-bar" style="background:#BAE6FD;border-radius:0">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="color:#0369A1;font-weight:500">סה"כ משוער לרכישה:</span>
+        <span id="shop-total" style="font-weight:700;color:#0369A1">₪305</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="color:#0369A1" id="shop-progress-text">2 מתוך 21</span>
+        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 10%; background: rgb(3, 105, 161);"></div></div>
+      </div>
+    </div>
 
     <!-- Purchased section -->
     <div id="purchased-section" style="display: block;">
@@ -799,17 +783,6 @@
     </div></div>
     </div>
 
-    <!-- Summary -->
-    <div class="summary-bar">
-      <div style="display:flex;gap:8px;align-items:center">
-        <span style="color:var(--gray-text)">סה"כ משוער:</span>
-        <span id="shop-total" style="font-weight:600;color:var(--green-dark)">₪311</span>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <span style="color:var(--gray-text)" id="shop-progress-text">2 מתוך 23</span>
-        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 9%; background: var(--green);"></div></div>
-      </div>
-    </div>
   </div>
 
 </div>
@@ -1543,9 +1516,10 @@ function togglePurchased() {
 
 function updateShopSummary() {
   const items = state.shopItems.filter(i => i.category === state.activeCategory);
-  const total = items.reduce((s, i) => s + (i.price ? i.price * i.qty : 0), 0);
   const purchased = state.purchasedItems.filter(i => i.category === state.activeCategory).length;
   const all = items.length + purchased;
+  // Total only for items still to buy (not purchased)
+  const total = items.reduce((s, i) => s + (i.price ? i.price * i.qty : 0), 0);
   document.getElementById('shop-total').textContent = '₪' + total.toFixed(0);
   document.getElementById('shop-progress-text').textContent = purchased + ' מתוך ' + all;
   const pct = all > 0 ? Math.round(purchased / all * 100) : 0;
