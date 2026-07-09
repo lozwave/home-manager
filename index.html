@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_45.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_46.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,6 +100,7 @@
   .tab-btn.active-shop { color: #0369A1; border-bottom-color: #0369A1; background:#BAE6FD !important; }
   .tab-btn.active-tasks { color: #3C3489; border-bottom-color: #534AB7; background:#CECBF6 !important; }
   .tab-btn.active-wishes { color: #854D0E; border-bottom-color: #CA8A04; background:#FEF08A !important; }
+  .tab-btn.active-travel { color: #065F46; border-bottom-color: #059669; background:#A7F3D0 !important; }
 
   .section { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; }
   .section.active { display: block; }
@@ -436,16 +437,19 @@
 
 <div class="tabs">
   <button class="tab-btn active-shop" onclick="switchTab(&#39;shop&#39;)" id="tab-shop" style="background:#E0F2FE">
-    🛒 קניות <span id="shop-count" style="background:white;color:#0369A1;font-size:10px;padding:1px 6px;border-radius:10px">21</span>
+    🛒 קניות <span id="shop-count" style="background:white;color:#0369A1;font-size:10px;padding:1px 6px;border-radius:10px">19</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks" style="background:#EEEDFE">
-    ✅ משימות <span id="tasks-count" style="background:white;color:#534AB7;font-size:10px;padding:1px 6px;border-radius:10px">6</span>
+    ✅ משימות <span id="tasks-count" style="background:white;color:#534AB7;font-size:10px;padding:1px 6px;border-radius:10px">5</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;events&#39;)" id="tab-events" style="background:#FCE7F3">
     📅 אירועים <span id="events-count" style="background:white;color:#9D174D;font-size:10px;padding:1px 6px;border-radius:10px">5</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;wishes&#39;)" id="tab-wishes" style="background:#FEF9C3">
     🌈 רצונות <span id="wishes-count" style="background:white;color:#854D0E;font-size:10px;padding:1px 6px;border-radius:10px">3</span>
+  </button>
+  <button class="tab-btn" onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="background:#ECFDF5">
+    🧳 ציוד לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px"></span>
   </button>
 </div>
 
@@ -454,7 +458,7 @@
 
   <div class="card">
     <!-- Category tabs -->
-    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (15)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (6)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
+    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (13)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (6)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap">
@@ -476,12 +480,12 @@
     </div>
 
     <!-- Items list -->
-    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">5</span></div><div class="item-row" style="background: white;">
+    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">4</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(196)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מיסו</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪14</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪14</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(196)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(196, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -494,8 +498,8 @@
           <div class="chk" onclick="purchaseItem(195)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מירין</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪20</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪20</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(195)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(195, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -508,8 +512,8 @@
           <div class="chk" onclick="purchaseItem(194)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">סויה</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪10</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪10</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(194)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(194, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -519,25 +523,11 @@
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(193)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קטשופ</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪17</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪17</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(193)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(193, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-193" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(193);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(193);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(197)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שמן שומשום</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪20</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪20</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(197)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(197, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -546,82 +536,40 @@
               <div onclick="deleteShopItem(197);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">חטיפים וממתקים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(203)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Poof</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×3</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪4</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪12</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(203)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(203, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-203" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(203);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(203);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">ירקות ופירות</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">2</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(204)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מלפפונים</div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">ירקות ופירות</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(211)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">בננה</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪10</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪10</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(204)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(204, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-204" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(204);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(204);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            <button class="del-btn" onclick="openPriceSearch(211)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(211, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-211" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(211);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(211);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(205)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">עגבניות</div>
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">לחמים ומאפים</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(217)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">לחם עננים</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪4</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪4</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪18</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪18</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(205)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(205, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-205" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(205);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(205);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            <button class="del-btn" onclick="openPriceSearch(217)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(217, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-217" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(217);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(217);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">כלי ניקוי</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">1</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(198)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מגבונים לניקוי כללי</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(198)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(198, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-198" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(198);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(198);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">6</span></div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(200)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">אקטימל</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪22</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪22</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(200)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(200, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-200" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(200);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(200);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">7</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(206)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ביצים</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪14</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪14</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(206)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(206, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -645,11 +593,25 @@
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(218)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גבינה צהובה</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪26</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪26</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(218)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(218, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-218" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(218);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(218);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(202)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">חלב</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×4</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪7</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪29</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(202)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(202, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -662,8 +624,8 @@
           <div class="chk" onclick="purchaseItem(207)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">סימפוניה</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪11</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪11</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(207)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(207, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -676,8 +638,8 @@
           <div class="chk" onclick="purchaseItem(208)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פרמז׳ן</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪20</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪20</div>
           <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
             <button class="del-btn" onclick="openPriceSearch(208)" title="חפש מחיר" style="font-size:13px">🔍</button>
             <button class="del-btn" onclick="toggleItemMenu(208, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
@@ -686,17 +648,31 @@
               <div onclick="deleteShopItem(208);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(219)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קוטג׳</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×4</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪7</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪28</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(219)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(219, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-219" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(219);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(219);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
         </div></div>
 
     <!-- Summary -->
     <div class="summary-bar" style="background:#BAE6FD;border-radius:0">
       <div style="display:flex;gap:8px;align-items:center">
         <span style="color:#0369A1;font-weight:500">סה"כ משוער לרכישה:</span>
-        <span id="shop-total" style="font-weight:700;color:#0369A1">₪61</span>
+        <span id="shop-total" style="font-weight:700;color:#0369A1">₪226</span>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <span style="color:#0369A1" id="shop-progress-text">35 מתוך 50</span>
-        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 70%; background: rgb(3, 105, 161);"></div></div>
+        <span style="color:#0369A1" id="shop-progress-text">38 מתוך 51</span>
+        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 75%; background: rgb(3, 105, 161);"></div></div>
       </div>
     </div>
 
@@ -705,7 +681,7 @@
       <div class="purchased-toggle" onclick="togglePurchased()">
         <span id="purchased-arrow">▸</span>
         <span>נרכשו</span>
-        <span id="purchased-count-badge" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">35</span>
+        <span id="purchased-count-badge" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">38</span>
       </div>
       <div id="purchased-list" style="display: block;"><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">אחר</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(182)" title="החזר לרשימה" style="cursor:pointer">
@@ -728,6 +704,13 @@
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">פסטה ברילה</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪16</div>
         <button class="del-btn" onclick="deletePurchased(153)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(193)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">קטשופ</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪17</div>
+        <button class="del-btn" onclick="deletePurchased(193)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(188)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -771,19 +754,19 @@
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪5</div>
         <button class="del-btn" onclick="deletePurchased(174)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(210)" title="החזר לרשימה" style="cursor:pointer">
+        <div class="chk checked-green" onclick="unpurchaseItem(212)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">במבה</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪10</div>
-        <button class="del-btn" onclick="deletePurchased(210)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+        <button class="del-btn" onclick="deletePurchased(212)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(192)" title="החזר לרשימה" style="cursor:pointer">
+        <div class="chk checked-green" onclick="unpurchaseItem(215)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">דובונים</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪15</div>
-        <button class="del-btn" onclick="deletePurchased(192)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+        <button class="del-btn" onclick="deletePurchased(215)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(161)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -792,20 +775,27 @@
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪15</div>
         <button class="del-btn" onclick="deletePurchased(161)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(165)" title="החזר לרשימה" style="cursor:pointer">
+        <div class="chk checked-green" onclick="unpurchaseItem(216)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">שוקולד</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪8</div>
-        <button class="del-btn" onclick="deletePurchased(165)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">ירקות ופירות</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(150)" title="החזר לרשימה" style="cursor:pointer">
+        <button class="del-btn" onclick="deletePurchased(216)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(214)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">בננה</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
-        <button class="del-btn" onclick="deletePurchased(150)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">שקדי מרק</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪10</div>
+        <button class="del-btn" onclick="deletePurchased(214)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(203)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">Poof</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪12</div>
+        <button class="del-btn" onclick="deletePurchased(203)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">ירקות ופירות</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(151)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
@@ -834,6 +824,27 @@
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
         <button class="del-btn" onclick="deletePurchased(191)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(204)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">מלפפונים</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
+        <button class="del-btn" onclick="deletePurchased(204)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(213)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">סלרי</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
+        <button class="del-btn" onclick="deletePurchased(213)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(205)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">עגבניות</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪4</div>
+        <button class="del-btn" onclick="deletePurchased(205)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(186)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
@@ -847,14 +858,14 @@
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">קישואים</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
         <button class="del-btn" onclick="deletePurchased(178)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">לחמים ומאפים</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(162)" title="החזר לרשימה" style="cursor:pointer">
+      </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">כלי ניקוי</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(198)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">לחם עננים</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪18</div>
-        <button class="del-btn" onclick="deletePurchased(162)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">מגבונים לניקוי כללי</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
+        <button class="del-btn" onclick="deletePurchased(198)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">לחמים ומאפים</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(158)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
@@ -869,19 +880,12 @@
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪14</div>
         <button class="del-btn" onclick="deletePurchased(169)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">מוצרי חלב</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(190)" title="החזר לרשימה" style="cursor:pointer">
+        <div class="chk checked-green" onclick="unpurchaseItem(200)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">גבינה צהובה</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪26</div>
-        <button class="del-btn" onclick="deletePurchased(190)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(180)" title="החזר לרשימה" style="cursor:pointer">
-          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
-        </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">חלב</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
-        <button class="del-btn" onclick="deletePurchased(180)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">אקטימל</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪22</div>
+        <button class="del-btn" onclick="deletePurchased(200)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(181)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -896,13 +900,6 @@
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">מוצרלה</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
         <button class="del-btn" onclick="deletePurchased(184)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(170)" title="החזר לרשימה" style="cursor:pointer">
-          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
-        </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">קוטג׳</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪28</div>
-        <button class="del-btn" onclick="deletePurchased(170)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">קפה ותה</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(189)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -1003,24 +1000,6 @@
         <div onclick="closeTaskMenus();deleteTask(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
-  </div><div class="section-hdr" style="background: rgb(219, 234, 254); color: rgb(29, 78, 216); padding: 5px 14px; font-size: 12px; font-weight: 600;">אמא</div><div class="item-row" style="position: relative;">
-    <div class="chk " onclick="toggleTask(15)" title="סמן הושלם">
-      
-    </div>
-    <div style="flex:1;min-width:0">
-      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מתנה לנועם</div>
-    </div>
-    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-      <div style="width:75px;text-align:center"><span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span></div>
-      <div style="width:65px;text-align:center"><span class="tag" style="background:var(--red-light);color:var(--red);display:block;text-align:center;font-size:13px">18.6</span></div>
-    </div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleTaskMenu(15)" style="font-size:16px;font-weight:700;padding:2px 8px" title="פעולות">⋮</button>
-      <div id="task-menu-15" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeTaskMenus();editTask(15)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeTaskMenus();deleteTask(15)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
   </div><div class="section-hdr" style="background: rgb(219, 234, 254); color: rgb(29, 78, 216); padding: 5px 14px; font-size: 12px; font-weight: 600;">ללא אחראי</div><div class="item-row" style="position: relative;">
     <div class="chk " onclick="toggleTask(12)" title="סמן הושלם">
       
@@ -1096,20 +1075,38 @@
   </div></div>
 
     <!-- Completed tasks section -->
-    <div id="completed-section" style="display:none">
+    <div id="completed-section" style="display: block;">
       <div class="purchased-toggle" onclick="toggleCompleted()" style="border-top:1px solid var(--gray-border)">
         <span id="completed-arrow">▸</span>
         <span>הושלמו</span>
-        <span id="completed-count-badge" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">0</span>
+        <span id="completed-count-badge" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">1</span>
       </div>
-      <div id="completed-list" style="display: block;"></div>
+      <div id="completed-list" style="display: block;"><div class="item-row" style="position: relative;">
+    <div class="chk checked-purple" onclick="toggleTask(15)" title="החזר לפתוח">
+      <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name done" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מתנה לנועם</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center"><span class="tag" style="background:#DBEAFE;color:#1D4ED8;display:block;text-align:center;font-size:13px">אמא</span></div>
+      <div style="width:65px;text-align:center"><span class="tag" style="background:var(--green-light);color:var(--green-dark);display:block;text-align:center;font-size:13px">18.6</span></div>
+    </div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTaskMenu(15)" style="font-size:16px;font-weight:700;padding:2px 8px" title="פעולות">⋮</button>
+      <div id="task-menu-15" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTaskMenus();editTask(15)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTaskMenus();deleteTask(15)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div></div>
     </div>
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="tasks-progress-text">0 מתוך 6 הושלמו</span>
+      <span style="color:var(--gray-text)" id="tasks-progress-text">1 מתוך 6 הושלמו</span>
       <div style="display:flex;gap:8px;align-items:center">
-        <div class="progress-wrap"><div class="progress-fill" id="tasks-progress-bar" style="width:0%;background:var(--purple)"></div></div>
+        <div class="progress-wrap"><div class="progress-fill" id="tasks-progress-bar" style="width: 17%; background: var(--purple);"></div></div>
       </div>
     </div>
   </div>
@@ -1134,23 +1131,6 @@
 
     <!-- Events list -->
     <div id="events-list"><div style="font-size: 11px; font-weight: 600; color: rgb(157, 23, 77); padding: 6px 14px; background: rgb(252, 231, 243); border-bottom: 1px solid rgb(249, 168, 212);">קרובים</div><div class="item-row" style="opacity: 1;">
-    <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פדיקור לקרן</div>
-      
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">6.7.26 09:00</span>
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אמא</div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(10)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-10" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
-  </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">סיור בעוטף</div>
       
@@ -1199,6 +1179,23 @@
         <div onclick="closeEventMenus();addToCalendar(7)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
         <div onclick="closeEventMenus();openEditEvent(7)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
         <div onclick="closeEventMenus();deleteEvent(7)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="opacity: 1;">
+    <div style="flex:1;min-width:0">
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פדיקור לקרן</div>
+      
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0">
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">4.8.26 09:00</span>
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אמא</div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleEventMenu(10)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="event-menu-10" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeEventMenus();addToCalendar(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
+        <div onclick="closeEventMenus();openEditEvent(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeEventMenus();deleteEvent(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
   </div><div class="item-row" style="opacity: 1;">
@@ -1320,14 +1317,112 @@
     </div>
 
     <!-- Filter by owner -->
-    <div style="display:flex;gap:6px;padding:8px 14px;border-bottom:1px solid var(--gray-border);flex-wrap:wrap" id="wishes-filter"><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid rgb(202, 138, 4); background: rgb(254, 249, 195); color: rgb(133, 77, 14); cursor: pointer; font-family: Heebo, sans-serif;">אמא</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">אבא</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">גל</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">כולם</button></div>
+    <div style="display:flex;gap:6px;padding:8px 14px;border-bottom:1px solid var(--gray-border);flex-wrap:wrap" id="wishes-filter"><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">אמא</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">אבא</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid var(--gray-border); background: white; color: var(--text-muted); cursor: pointer; font-family: Heebo, sans-serif;">גל</button><button style="font-size: 12px; padding: 4px 10px; border-radius: 20px; border: 1px solid rgb(202, 138, 4); background: rgb(254, 249, 195); color: rgb(133, 77, 14); cursor: pointer; font-family: Heebo, sans-serif;">כולם</button></div>
 
     <!-- Wishes list -->
-    <div id="wishes-list"><div class="empty">אין רצונות — הוסיפו רצון ראשון! 🌈</div></div>
+    <div id="wishes-list"><div class="item-row">
+    <div class="chk " onclick="toggleWish(5)" style="border-color:#CA8A04">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">💡 שידת כניסה</div>
+      
+      <div style="display:flex;gap:5px;margin-top:3px;flex-wrap:wrap">
+        <span class="tag" style="background:#FEF9C3;color:#854D0E">כולם</span>
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text)">🟡 בינוני</span>
+        
+      </div>
+    </div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleWishMenu(5)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="wish-menu-5" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeWishMenus();openEditWish(5)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeWishMenus();deleteWish(5)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div></div>
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="wishes-count-text">0 רצונות</span>
+      <span style="color:var(--gray-text)" id="wishes-count-text">1 רצונות פתוחים</span>
+    </div>
+  </div>
+</div>
+
+<!-- TRAVEL SECTION -->
+<div class="section" id="section-travel">
+  <div class="card">
+
+    <!-- Person tabs -->
+    <div class="cat-tabs" id="travel-person-tabs"><button class="cat-tab active-cat" style="background: rgb(167, 243, 208); color: rgb(6, 95, 70); border-color: rgb(5, 150, 105);">אמא</button><button class="cat-tab">אבא</button><button class="cat-tab">גל</button><button class="cat-tab">כולם</button><button class="cat-tab">⚙️ קטגוריות</button></div>
+
+    <!-- Add item row -->
+    <div class="add-row" style="flex-wrap:wrap;background:var(--gray-bg);border-bottom:1px solid var(--gray-border)">
+      <input type="text" id="travel-name-input" placeholder="פריט לארוז..." onkeydown="if(event.key===&#39;Enter&#39;)addTravelItem()" style="flex:1;min-width:120px">
+      <select id="travel-cat-input" style="flex:1;min-width:100px;font-size:13px;padding:7px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);font-family:&#39;Heebo&#39;,sans-serif;direction:rtl"><option value="">קטגוריה...</option><option value="בגדים">בגדים</option><option value="נייד">נייד</option><option value="רחצה">רחצה</option></select>
+      <button class="add-btn" style="background:#059669;color:white" onclick="addTravelItem()">+ הוסף</button>
+    </div>
+
+    <!-- Items list -->
+    <div id="travel-items-list"><div class="empty">אין פריטים — הוסיפי פריט ראשון! 🧳</div></div>
+
+    <!-- Summary -->
+    <div class="summary-bar" style="background:#ECFDF5">
+      <span style="color:#065F46" id="travel-summary">0 מתוך 0 נארזו</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="progress-wrap"><div class="progress-fill" id="travel-progress-bar" style="width:0%;background:#059669"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT TRAVEL ITEM MODAL -->
+<div class="modal-overlay" id="edit-travel-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>✏️ עריכת פריט</h3>
+      <button class="modal-close" onclick="document.getElementById(&#39;edit-travel-modal&#39;).classList.remove(&#39;open&#39;)">×</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label>שם פריט</label>
+        <input type="text" id="edit-travel-name" placeholder="שם פריט...">
+      </div>
+      <div>
+        <label>קטגוריה</label>
+        <select id="edit-travel-cat"></select>
+      </div>
+      <div>
+        <label>שייך ל</label>
+        <select id="edit-travel-person"></select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById(&#39;edit-travel-modal&#39;).classList.remove(&#39;open&#39;)">ביטול</button>
+      <button class="btn-save" style="background:#059669" onclick="saveEditTravelItem()">שמור</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRAVEL CATEGORY SETTINGS MODAL -->
+<div class="modal-overlay" id="travel-cat-settings-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>⚙️ קטגוריות ציוד לדרך</h3>
+      <button class="modal-close" onclick="document.getElementById(&#39;travel-cat-settings-modal&#39;).classList.remove(&#39;open&#39;)">×</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label>הוסף קטגוריה חדשה</label>
+        <div style="display:flex;gap:6px">
+          <input type="text" id="travel-new-cat-input" placeholder="שם קטגוריה..." onkeydown="if(event.key===&#39;Enter&#39;)addTravelCategory()">
+          <button class="add-btn" style="background:#059669;color:white" onclick="addTravelCategory()">הוסף</button>
+        </div>
+      </div>
+      <div id="travel-cat-list" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="document.getElementById(&#39;travel-cat-settings-modal&#39;).classList.remove(&#39;open&#39;)">סגור</button>
     </div>
   </div>
 </div>
@@ -1601,6 +1696,11 @@ let state = {
   wishes: [],
   nextWishId: 1,
   wishFilter: '',
+  travelItems: [],
+  nextTravelId: 1,
+  activeTravelPerson: '',
+  travelCategories: ['בגדים', 'נייד', 'רחצה'],
+  showTravelArchive: false,
   productCategories: ['מוצרי חלב','ירקות ופירות','לחמים ומאפים','חטיפים וממתקים','כלי ניקוי','רחצה','שתייה','אפייה','קפה ותה','בשר ודגים','קפואים','אחר'],
   nextShopId: 1,
   nextTaskId: 1
@@ -1652,6 +1752,7 @@ async function syncToSupabase() {
     await sbFetch('tasks?id=gte.0', 'DELETE', null);
     await sbFetch('events?id=gte.0', 'DELETE', null);
     await sbFetch('wishes?id=gte.0', 'DELETE', null);
+    await sbFetch('travel?id=gte.0', 'DELETE', null);
     await sbFetch('meta?key=neq.x', 'DELETE', null);
 
     await Promise.all([
@@ -1670,13 +1771,18 @@ async function syncToSupabase() {
       state.wishes.length ? sbFetch('wishes', 'POST',
         state.wishes.map(w => ({id: w.id, name: w.name, owner: w.owner||'כולם', category: w.category||'אחר', priority: w.priority||'בינוני', cost: w.cost||null, notes: w.notes||'', done: w.done}))
       ) : Promise.resolve(),
+      state.travelItems.length ? sbFetch('travel', 'POST',
+        state.travelItems.map(i => ({id: i.id, name: i.name, category: i.category||'כללי', person: i.person||'', packed: i.packed, archived: i.archived||false}))
+      ) : Promise.resolve(),
       sbFetch('meta', 'POST', [
         {key: 'categories', value: JSON.stringify(state.categories)},
         {key: 'members', value: JSON.stringify(state.members)},
         {key: 'nextShopId', value: String(state.nextShopId)},
         {key: 'nextTaskId', value: String(state.nextTaskId)},
         {key: 'nextEventId', value: String(state.nextEventId)},
-        {key: 'nextWishId', value: String(state.nextWishId)}
+        {key: 'nextWishId', value: String(state.nextWishId)},
+        {key: 'nextTravelId', value: String(state.nextTravelId)},
+        {key: 'travelCategories', value: JSON.stringify(state.travelCategories)}
       ])
     ]);
     showSyncStatus('✅ מסונכרן', 'var(--green-dark)');
@@ -1689,13 +1795,14 @@ async function syncToSupabase() {
 async function loadFromSupabase() {
   showSyncStatus('⏳ טוען...', 'var(--amber)');
   try {
-    const [shopData, purchasedData, taskData, metaData, eventData, wishData] = await Promise.all([
+    const [shopData, purchasedData, taskData, metaData, eventData, wishData, travelData] = await Promise.all([
       sbFetch('shopping?select=*', 'GET'),
       sbFetch('purchased?select=*', 'GET'),
       sbFetch('tasks?select=*', 'GET'),
       sbFetch('meta?select=*', 'GET'),
       sbFetch('events?select=*', 'GET'),
       sbFetch('wishes?select=*', 'GET'),
+      sbFetch('travel?select=*', 'GET'),
     ]);
 
     if (metaData && metaData.length) {
@@ -1706,6 +1813,8 @@ async function loadFromSupabase() {
       if (meta.nextShopId) state.nextShopId = parseInt(meta.nextShopId) || 1;
       if (meta.nextTaskId) state.nextTaskId = parseInt(meta.nextTaskId) || 1;
       if (meta.nextWishId) state.nextWishId = parseInt(meta.nextWishId) || 1;
+      if (meta.nextTravelId) state.nextTravelId = parseInt(meta.nextTravelId) || 1;
+      if (meta.travelCategories) state.travelCategories = JSON.parse(meta.travelCategories);
     }
     if (!metaData || !metaData.length) {
       setTimeout(() => syncToSupabase(), 500);
@@ -1735,6 +1844,11 @@ async function loadFromSupabase() {
       state.wishes = wishData.map(r => ({
         id: r.id, name: r.name, owner: r.owner||'כולם', category: r.category||'אחר',
         priority: r.priority||'בינוני', cost: r.cost||null, notes: r.notes||'', done: r.done
+      }));
+    }
+    if (travelData && travelData.length) {
+      state.travelItems = travelData.map(r => ({
+        id: r.id, name: r.name, category: r.category||'כללי', person: r.person||'', packed: r.packed, archived: r.archived||false
       }));
     }
     if (!state.activeCategory || !state.categories.includes(state.activeCategory)) {
@@ -1779,6 +1893,9 @@ function renderAll() {
   renderTasks();
   renderEvents();
   renderWishes();
+  renderTravelPersonTabs();
+  renderTravelItems();
+  renderTravelCatDropdown('travel-cat-input', '');
   renderMemberList();
   renderCatSettings();
   updateCounts();
@@ -1795,7 +1912,7 @@ function renderAll() {
 
 // ─── TABS ─────────────────────────────────────────────────
 function switchTab(tab) {
-  ['shop','tasks','events','wishes'].forEach(t => {
+  ['shop','tasks','events','wishes','travel'].forEach(t => {
     document.getElementById('section-' + t).classList.toggle('active', t === tab);
     document.getElementById('tab-' + t).className = 'tab-btn' + (t === tab ? ' active-' + t : '');
   });
@@ -2852,6 +2969,257 @@ function makeWishRow(wish) {
   return row;
 }
 
+// ─── TRAVEL ───────────────────────────────────────────────
+function getTravelPersons() {
+  return [...state.members];
+}
+
+function renderTravelPersonTabs() {
+  const el = document.getElementById('travel-person-tabs');
+  if (!el) return;
+  el.innerHTML = '';
+  const persons = getTravelPersons();
+  if (!state.activeTravelPerson || !persons.includes(state.activeTravelPerson)) {
+    state.activeTravelPerson = persons[0] || '';
+  }
+  persons.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-tab' + (p === state.activeTravelPerson ? ' active-cat' : '');
+    btn.style.background = p === state.activeTravelPerson ? '#A7F3D0' : '';
+    btn.style.color = p === state.activeTravelPerson ? '#065F46' : '';
+    btn.style.borderColor = p === state.activeTravelPerson ? '#059669' : '';
+    const count = state.travelItems.filter(i => i.person === p).length;
+    btn.textContent = p + (count > 0 ? ` (${count})` : '');
+    btn.onclick = () => { state.activeTravelPerson = p; renderTravelPersonTabs(); renderTravelItems(); };
+    el.appendChild(btn);
+  });
+
+  // Settings button
+  const settingsBtn = document.createElement('button');
+  settingsBtn.className = 'cat-tab';
+  settingsBtn.textContent = '⚙️ קטגוריות';
+  settingsBtn.onclick = openTravelCatSettings;
+  el.appendChild(settingsBtn);
+}
+
+function renderTravelCatDropdown(selectId, selectedVal) {
+  const sel = document.getElementById(selectId);
+  if (!sel) return;
+  sel.innerHTML = '<option value="">קטגוריה...</option>';
+  [...state.travelCategories].sort((a,b) => a.localeCompare(b,'he')).forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    if (c === selectedVal) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+
+function addTravelItem() {
+  const name = document.getElementById('travel-name-input').value.trim();
+  if (!name) return;
+  const category = document.getElementById('travel-cat-input').value || 'כללי';
+  const person = state.activeTravelPerson;
+  state.travelItems.push({ id: state.nextTravelId++, name, category, person, packed: false, archived: false });
+  document.getElementById('travel-name-input').value = '';
+  document.getElementById('travel-cat-input').value = '';
+  save(); renderTravelItems(); renderTravelPersonTabs(); updateCounts();
+}
+
+function toggleTravelItem(id) {
+  const item = state.travelItems.find(i => i.id === id);
+  if (item) { item.packed = !item.packed; save(); renderTravelItems(); updateCounts(); }
+}
+
+function deleteTravelItem(id) {
+  state.travelItems = state.travelItems.filter(i => i.id !== id);
+  save(); renderTravelItems(); renderTravelPersonTabs(); updateCounts();
+}
+
+function editTravelItem(id) {
+  const item = state.travelItems.find(i => i.id === id);
+  if (!item) return;
+  document.getElementById('edit-travel-name').value = item.name;
+  renderTravelCatDropdown('edit-travel-cat', item.category);
+  const personSel = document.getElementById('edit-travel-person');
+  personSel.innerHTML = '';
+  getTravelPersons().forEach(p => {
+    const o = document.createElement('option');
+    o.value = p; o.textContent = p;
+    if (p === item.person) o.selected = true;
+    personSel.appendChild(o);
+  });
+  document.getElementById('edit-travel-modal').dataset.itemId = id;
+  document.getElementById('edit-travel-modal').classList.add('open');
+}
+
+function saveEditTravelItem() {
+  const id = parseInt(document.getElementById('edit-travel-modal').dataset.itemId);
+  const item = state.travelItems.find(i => i.id === id);
+  if (!item) return;
+  item.name = document.getElementById('edit-travel-name').value.trim() || item.name;
+  item.category = document.getElementById('edit-travel-cat').value || item.category;
+  item.person = document.getElementById('edit-travel-person').value;
+  save(); renderTravelItems(); renderTravelPersonTabs();
+  document.getElementById('edit-travel-modal').classList.remove('open');
+}
+
+function toggleTravelMenu(id) {
+  const menu = document.getElementById('travel-menu-' + id);
+  if (!menu) return;
+  const isOpen = menu.style.display === 'block';
+  closeTravelMenus();
+  if (!isOpen) {
+    menu.style.display = 'block';
+    setTimeout(() => document.addEventListener('click', closeTravelMenus, {once: true}), 10);
+  }
+}
+
+function closeTravelMenus() {
+  document.querySelectorAll('[id^="travel-menu-"]').forEach(m => m.style.display = 'none');
+}
+
+function openTravelCatSettings() {
+  renderTravelCatList();
+  document.getElementById('travel-cat-settings-modal').classList.add('open');
+}
+
+function renderTravelCatList() {
+  const el = document.getElementById('travel-cat-list');
+  el.innerHTML = '';
+  [...state.travelCategories].sort((a,b) => a.localeCompare(b,'he')).forEach(cat => {
+    const tag = document.createElement('div');
+    tag.className = 'member-tag';
+    tag.style.cssText = 'background:#ECFDF5;color:#065F46';
+    tag.innerHTML = cat + `<button onclick="removeTravelCategory('${cat}')" style="background:none;border:none;cursor:pointer;color:#065F46;font-size:12px;padding:0;margin-right:2px">×</button>`;
+    el.appendChild(tag);
+  });
+}
+
+function addTravelCategory() {
+  const inp = document.getElementById('travel-new-cat-input');
+  const val = inp.value.trim();
+  if (!val || state.travelCategories.includes(val)) return;
+  state.travelCategories.push(val);
+  inp.value = '';
+  save(); renderTravelCatList(); renderTravelCatDropdown('travel-cat-input', '');
+}
+
+function removeTravelCategory(cat) {
+  state.travelCategories = state.travelCategories.filter(c => c !== cat);
+  save(); renderTravelCatList();
+}
+
+function toggleTravelArchive(id) {
+  const item = state.travelItems.find(i => i.id === id);
+  if (item) { item.archived = !item.archived; item.packed = false; save(); renderTravelItems(); updateCounts(); }
+}
+
+function renderTravelItems() {
+  const el = document.getElementById('travel-items-list');
+  if (!el) return;
+  const person = state.activeTravelPerson;
+  const allItems = state.travelItems.filter(i => i.person === person);
+  const activeItems = allItems.filter(i => !i.archived);
+  const archivedItems = allItems.filter(i => i.archived);
+
+  el.innerHTML = '';
+
+  if (activeItems.length === 0 && archivedItems.length === 0) {
+    el.innerHTML = '<div class="empty">אין פריטים — הוסיפי פריט ראשון! 🧳</div>';
+    document.getElementById('travel-summary').textContent = '0 מתוך 0 נארזו';
+    document.getElementById('travel-progress-bar').style.width = '0%';
+    return;
+  }
+
+  // Group active items by category
+  if (activeItems.length > 0) {
+    const groups = {};
+    activeItems.forEach(item => {
+      const cat = item.category || 'כללי';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push(item);
+    });
+
+    Object.keys(groups).sort((a,b) => a.localeCompare(b,'he')).forEach(groupName => {
+      const groupItems = groups[groupName].sort((a,b) => a.name.localeCompare(b.name,'he'));
+
+      const hdr = document.createElement('div');
+      hdr.style.cssText = 'display:flex;align-items:center;gap:6px;padding:5px 14px;background:#ECFDF5;border-bottom:1px solid #6EE7B7;border-top:1px solid #6EE7B755';
+      hdr.innerHTML = `<span style="font-size:12px;font-weight:600;color:#065F46">${groupName}</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">${groupItems.length}</span>`;
+      el.appendChild(hdr);
+
+      groupItems.forEach(item => {
+        el.appendChild(makeTravelRow(item));
+      });
+    });
+  } else {
+    el.innerHTML += '<div class="empty" style="padding:12px">אין פריטים פעילים</div>';
+  }
+
+  // Archive section
+  if (archivedItems.length > 0) {
+    const archHdr = document.createElement('div');
+    archHdr.style.cssText = 'display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--gray-bg);border-top:1px solid var(--gray-border);cursor:pointer;user-select:none';
+    archHdr.innerHTML = `
+      <span style="font-size:13px;color:var(--gray-text)">${state.showTravelArchive ? '▾' : '▸'}</span>
+      <span style="font-size:13px;font-weight:500;color:var(--gray-text)">📦 מאגר</span>
+      <span style="font-size:11px;color:var(--gray-text);background:var(--gray-border);padding:1px 6px;border-radius:10px">${archivedItems.length}</span>
+    `;
+    archHdr.onclick = () => { state.showTravelArchive = !state.showTravelArchive; renderTravelItems(); };
+    el.appendChild(archHdr);
+
+    if (state.showTravelArchive) {
+      const archGroups = {};
+      archivedItems.forEach(item => {
+        const cat = item.category || 'כללי';
+        if (!archGroups[cat]) archGroups[cat] = [];
+        archGroups[cat].push(item);
+      });
+      Object.keys(archGroups).sort((a,b) => a.localeCompare(b,'he')).forEach(groupName => {
+        const groupItems = archGroups[groupName].sort((a,b) => a.name.localeCompare(b.name,'he'));
+        const hdr = document.createElement('div');
+        hdr.style.cssText = 'display:flex;align-items:center;gap:6px;padding:4px 14px;background:#F5F5F5;border-bottom:1px solid var(--gray-border)';
+        hdr.innerHTML = `<span style="font-size:11px;font-weight:600;color:var(--gray-text)">${groupName}</span>`;
+        el.appendChild(hdr);
+        groupItems.forEach(item => el.appendChild(makeTravelRow(item)));
+      });
+    }
+  }
+
+  const packed = activeItems.filter(i => i.packed).length;
+  const pct = activeItems.length > 0 ? Math.round(packed / activeItems.length * 100) : 0;
+  document.getElementById('travel-summary').textContent = `${packed} מתוך ${activeItems.length} נארזו`;
+  document.getElementById('travel-progress-bar').style.width = pct + '%';
+}
+
+function makeTravelRow(item) {
+  const row = document.createElement('div');
+  row.className = 'item-row';
+  row.style.background = item.archived ? '#FAFAFA' : item.packed ? '#F0FDF4' : 'white';
+
+  row.innerHTML = `
+    <div class="chk ${item.packed && !item.archived ? 'checked-green' : ''}" 
+         onclick="${item.archived ? '' : `toggleTravelItem(${item.id})`}" 
+         title="${item.archived ? 'במאגר' : item.packed ? 'הסר סימון' : 'סמן כנארז'}" 
+         style="border-color:#059669;${item.archived ? 'opacity:0.4;cursor:default' : 'cursor:pointer'}">
+      ${item.packed && !item.archived ? '<svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;${item.archived ? 'color:var(--gray-text)' : 'color:var(--text)'};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${item.name}</div>
+    <button onclick="toggleTravelArchive(${item.id})" title="${item.archived ? 'החזר לרשימה' : 'העבר למאגר'}" 
+            style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0" >
+      ${item.archived ? '↩️' : '📦'}
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(${item.id})" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-${item.id}" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(${item.id})" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(${item.id})" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  `;
+  return row;
+}
+
 // ─── COUNTS ───────────────────────────────────────────────
 function updateCounts() {
   const shopCount = state.shopItems.length;
@@ -2859,10 +3227,12 @@ function updateCounts() {
   const today = new Date().toISOString().split('T')[0];
   const eventCount = state.events.filter(e => e.date >= today).length;
   const wishCount = state.wishes.filter(w => !w.done).length;
+  const travelCount = state.travelItems.filter(i => !i.packed).length;
   document.getElementById('shop-count').textContent = shopCount || '';
   document.getElementById('tasks-count').textContent = taskCount || '';
   document.getElementById('events-count').textContent = eventCount || '';
   document.getElementById('wishes-count').textContent = wishCount || '';
+  document.getElementById('travel-count').textContent = travelCount || '';
 }
 
 // ─── INIT ─────────────────────────────────────────────────
