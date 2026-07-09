@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_46.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_47.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -449,7 +449,7 @@
     🌈 רצונות <span id="wishes-count" style="background:white;color:#854D0E;font-size:10px;padding:1px 6px;border-radius:10px">3</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="background:#ECFDF5">
-    🧳 ציוד לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px"></span>
+    🧳 ציוד לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px">2</span>
   </button>
 </div>
 
@@ -1354,7 +1354,7 @@
   <div class="card">
 
     <!-- Person tabs -->
-    <div class="cat-tabs" id="travel-person-tabs"><button class="cat-tab active-cat" style="background: rgb(167, 243, 208); color: rgb(6, 95, 70); border-color: rgb(5, 150, 105);">אמא</button><button class="cat-tab">אבא</button><button class="cat-tab">גל</button><button class="cat-tab">כולם</button><button class="cat-tab">⚙️ קטגוריות</button></div>
+    <div class="cat-tabs" id="travel-person-tabs"><button class="cat-tab active-cat" style="background: rgb(167, 243, 208); color: rgb(6, 95, 70); border-color: rgb(5, 150, 105);">אמא (2)</button><button class="cat-tab">אבא</button><button class="cat-tab">גל</button><button class="cat-tab">כולם</button><button class="cat-tab">⚙️ קטגוריות</button></div>
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap;background:var(--gray-bg);border-bottom:1px solid var(--gray-border)">
@@ -1364,11 +1364,45 @@
     </div>
 
     <!-- Items list -->
-    <div id="travel-items-list"><div class="empty">אין פריטים — הוסיפי פריט ראשון! 🧳</div></div>
+    <div id="travel-items-list"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">בגדים</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">1</span></div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(2)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גופיה</div>
+    <button onclick="toggleTravelArchive(2)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(2)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-2" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(2)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(2)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--gray-bg); border-top: 1px solid var(--gray-border); cursor: pointer; user-select: none;">
+      <span style="font-size:13px;color:var(--gray-text)">▾</span>
+      <span style="font-size:13px;font-weight:500;color:var(--gray-text)">📦 מאגר</span>
+      <span style="font-size:11px;color:var(--gray-text);background:var(--gray-border);padding:1px 6px;border-radius:10px">1</span>
+    </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(245, 245, 245); border-bottom: 1px solid var(--gray-border);"><span style="font-size:11px;font-weight:600;color:var(--gray-text)">בגדים</span></div><div class="item-row" style="background: rgb(250, 250, 250);">
+    <div class="chk " onclick="" title="במאגר" style="border-color:#059669;opacity:0.4;cursor:default">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--gray-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">תחתונים</div>
+    <button onclick="toggleTravelArchive(1)" title="החזר לרשימה" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      ↩️
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(1)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-1" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div></div>
 
     <!-- Summary -->
     <div class="summary-bar" style="background:#ECFDF5">
-      <span style="color:#065F46" id="travel-summary">0 מתוך 0 נארזו</span>
+      <span style="color:#065F46" id="travel-summary">0 מתוך 1 נארזו</span>
       <div style="display:flex;gap:8px;align-items:center">
         <div class="progress-wrap"><div class="progress-fill" id="travel-progress-bar" style="width:0%;background:#059669"></div></div>
       </div>
