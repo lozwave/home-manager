@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_47.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_49.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -449,7 +449,7 @@
     🌈 רצונות <span id="wishes-count" style="background:white;color:#854D0E;font-size:10px;padding:1px 6px;border-radius:10px">3</span>
   </button>
   <button class="tab-btn" onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="background:#ECFDF5">
-    🧳 ציוד לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px">2</span>
+    🧳 צידה לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px">57</span>
   </button>
 </div>
 
@@ -684,12 +684,12 @@
         <span id="purchased-count-badge" style="background:var(--green-light);color:var(--green-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">38</span>
       </div>
       <div id="purchased-list" style="display: block;"><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:11px;font-weight:600;color:#0369A1">אחר</span></div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(182)" title="החזר לרשימה" style="cursor:pointer">
+        <div class="chk checked-green" onclick="unpurchaseItem(220)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">טופו</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
-        <button class="del-btn" onclick="deletePurchased(182)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+        <button class="del-btn" onclick="deletePurchased(220)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(185)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -1354,17 +1354,92 @@
   <div class="card">
 
     <!-- Person tabs -->
-    <div class="cat-tabs" id="travel-person-tabs"><button class="cat-tab active-cat" style="background: rgb(167, 243, 208); color: rgb(6, 95, 70); border-color: rgb(5, 150, 105);">אמא (2)</button><button class="cat-tab">אבא</button><button class="cat-tab">גל</button><button class="cat-tab">כולם</button><button class="cat-tab">⚙️ קטגוריות</button></div>
+    <div class="cat-tabs" id="travel-person-tabs"><button class="cat-tab active-cat" style="background: rgb(167, 243, 208); color: rgb(6, 95, 70); border-color: rgb(5, 150, 105);">אמא (20)</button><button class="cat-tab">אבא</button><button class="cat-tab">גל (28)</button><button class="cat-tab">כולם (9)</button><button class="cat-tab">⚙️ קטגוריות</button></div>
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap;background:var(--gray-bg);border-bottom:1px solid var(--gray-border)">
       <input type="text" id="travel-name-input" placeholder="פריט לארוז..." onkeydown="if(event.key===&#39;Enter&#39;)addTravelItem()" style="flex:1;min-width:120px">
-      <select id="travel-cat-input" style="flex:1;min-width:100px;font-size:13px;padding:7px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);font-family:&#39;Heebo&#39;,sans-serif;direction:rtl"><option value="">קטגוריה...</option><option value="בגדים">בגדים</option><option value="נייד">נייד</option><option value="רחצה">רחצה</option></select>
+      <select id="travel-cat-input" style="flex:1;min-width:100px;font-size:13px;padding:7px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);font-family:&#39;Heebo&#39;,sans-serif;direction:rtl"><option value="">קטגוריה...</option><option value="אביזרים לשיער">אביזרים לשיער</option><option value="אוכל">אוכל</option><option value="בגדים">בגדים</option><option value="כללי">כללי</option><option value="נייד">נייד</option><option value="רחצה">רחצה</option><option value="תרופות">תרופות</option></select>
       <button class="add-btn" style="background:#059669;color:white" onclick="addTravelItem()">+ הוסף</button>
     </div>
 
     <!-- Items list -->
-    <div id="travel-items-list"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">בגדים</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">1</span></div><div class="item-row" style="background: white;">
+    <div id="travel-items-list"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">אביזרים לשיער</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">4</span></div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(7)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מסרק</div>
+    <button onclick="toggleTravelArchive(7)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(7)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-7" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(7)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(7)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(6)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פן</div>
+    <button onclick="toggleTravelArchive(6)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(6)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-6" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(38)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קליפס וגומיות</div>
+    <button onclick="toggleTravelArchive(38)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(38)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-38" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(38)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(38)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(37)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קרם לחות או סרום</div>
+    <button onclick="toggleTravelArchive(37)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(37)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-37" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(37)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(37)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">בגדים</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">9</span></div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(39)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">בגד ים</div>
+    <button onclick="toggleTravelArchive(39)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(39)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-39" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(39)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(39)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
     <div class="chk " onclick="toggleTravelItem(2)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
       
     </div>
@@ -1379,17 +1454,103 @@
         <div onclick="closeTravelMenus();deleteTravelItem(2)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
-  </div><div style="display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--gray-bg); border-top: 1px solid var(--gray-border); cursor: pointer; user-select: none;">
-      <span style="font-size:13px;color:var(--gray-text)">▾</span>
-      <span style="font-size:13px;font-weight:500;color:var(--gray-text)">📦 מאגר</span>
-      <span style="font-size:11px;color:var(--gray-text);background:var(--gray-border);padding:1px 6px;border-radius:10px">1</span>
-    </div><div style="display: flex; align-items: center; gap: 6px; padding: 4px 14px; background: rgb(245, 245, 245); border-bottom: 1px solid var(--gray-border);"><span style="font-size:11px;font-weight:600;color:var(--gray-text)">בגדים</span></div><div class="item-row" style="background: rgb(250, 250, 250);">
-    <div class="chk " onclick="" title="במאגר" style="border-color:#059669;opacity:0.4;cursor:default">
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(4)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
       
     </div>
-    <div style="flex:1;font-size:15px;font-weight:500;color:var(--gray-text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">תחתונים</div>
-    <button onclick="toggleTravelArchive(1)" title="החזר לרשימה" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
-      ↩️
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גרביים</div>
+    <button onclick="toggleTravelArchive(4)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(4)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-4" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(4)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(4)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(53)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">חולצות</div>
+    <button onclick="toggleTravelArchive(53)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(53)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-53" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(53)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(53)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(5)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">חזיות</div>
+    <button onclick="toggleTravelArchive(5)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(5)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-5" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(5)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(5)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(52)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">כובע</div>
+    <button onclick="toggleTravelArchive(52)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(52)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-52" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(52)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(52)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(41)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">כפכפים</div>
+    <button onclick="toggleTravelArchive(41)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(41)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-41" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(41)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(41)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(40)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נעליים</div>
+    <button onclick="toggleTravelArchive(40)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(40)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-40" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(40)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(40)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(1)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">תחתונים</div>
+    <button onclick="toggleTravelArchive(1)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
     </button>
     <div style="position:relative;flex-shrink:0">
       <button class="del-btn" onclick="toggleTravelMenu(1)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
@@ -1398,11 +1559,116 @@
         <div onclick="closeTravelMenus();deleteTravelItem(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
+  </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">נייד</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">1</span></div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(3)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מטען לנייד</div>
+    <button onclick="toggleTravelArchive(3)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(3)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-3" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(3)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(3)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(236, 253, 245); border-bottom: 1px solid rgb(110, 231, 183); border-top: 1px solid rgba(110, 231, 183, 0.333);"><span style="font-size:12px;font-weight:600;color:#065F46">רחצה</span><span style="font-size:11px;color:#065F46;background:white;padding:1px 6px;border-radius:10px">6</span></div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(48)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">איפור</div>
+    <button onclick="toggleTravelArchive(48)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(48)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-48" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(48)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(48)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(50)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מברשת שיניים</div>
+    <button onclick="toggleTravelArchive(50)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(50)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-50" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(50)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(50)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(45)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מרכך</div>
+    <button onclick="toggleTravelArchive(45)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(45)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-45" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(45)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(45)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(51)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">משחת שיניים</div>
+    <button onclick="toggleTravelArchive(51)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(51)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-51" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(51)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(51)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(44)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">שמפו</div>
+    <button onclick="toggleTravelArchive(44)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(44)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-44" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(44)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(44)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="background: white;">
+    <div class="chk " onclick="toggleTravelItem(49)" title="סמן כנארז" style="border-color:#059669;cursor:pointer">
+      
+    </div>
+    <div style="flex:1;font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">תחתוניות</div>
+    <button onclick="toggleTravelArchive(49)" title="העבר למאגר" style="background:none;border:none;cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0">
+      📦
+    </button>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTravelMenu(49)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="travel-menu-49" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTravelMenus();editTravelItem(49)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTravelMenus();deleteTravelItem(49)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
   </div></div>
 
     <!-- Summary -->
     <div class="summary-bar" style="background:#ECFDF5">
-      <span style="color:#065F46" id="travel-summary">0 מתוך 1 נארזו</span>
+      <span style="color:#065F46" id="travel-summary">0 מתוך 20 נארזו</span>
       <div style="display:flex;gap:8px;align-items:center">
         <div class="progress-wrap"><div class="progress-fill" id="travel-progress-bar" style="width:0%;background:#059669"></div></div>
       </div>
@@ -1442,7 +1708,7 @@
 <div class="modal-overlay" id="travel-cat-settings-modal">
   <div class="modal">
     <div class="modal-header">
-      <h3>⚙️ קטגוריות ציוד לדרך</h3>
+      <h3>⚙️ קטגוריות צידה לדרך</h3>
       <button class="modal-close" onclick="document.getElementById(&#39;travel-cat-settings-modal&#39;).classList.remove(&#39;open&#39;)">×</button>
     </div>
     <div class="modal-body">
@@ -3053,6 +3319,21 @@ function addTravelItem() {
   if (!name) return;
   const category = document.getElementById('travel-cat-input').value || 'כללי';
   const person = state.activeTravelPerson;
+
+  // Check for duplicate in own list (active and archived)
+  const dupActive = state.travelItems.find(i => i.name === name && i.person === person && !i.archived);
+  const dupArchived = state.travelItems.find(i => i.name === name && i.person === person && i.archived);
+  if (dupActive) {
+    if (!confirm(`הפריט "${name}" כבר קיים ברשימה הפעילה של ${person}. להוסיף בכל זאת?`)) return;
+  } else if (dupArchived) {
+    if (!confirm(`הפריט "${name}" קיים במאגר של ${person}. להוסיף לרשימה הפעילה?`)) return;
+  } else {
+    // Check for duplicate in other people's lists
+    const dupOther = state.travelItems.find(i => i.name === name && i.person !== person);
+    if (dupOther) {
+      if (!confirm(`הפריט "${name}" כבר קיים ברשימה של ${dupOther.person}. להוסיף גם ל-${person}?`)) return;
+    }
+  }
   state.travelItems.push({ id: state.nextTravelId++, name, category, person, packed: false, archived: false });
   document.getElementById('travel-name-input').value = '';
   document.getElementById('travel-cat-input').value = '';
