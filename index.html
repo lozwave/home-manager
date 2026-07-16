@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_58.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_64.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,17 +62,13 @@
   .header {
     background: var(--white);
     border-bottom: 1px solid var(--gray-border);
-    padding: 0 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
+    padding: 0.75rem 1rem;
+    display: block;
     position: sticky;
     top: 0;
     z-index: 100;
   }
-  .header-title { font-size: 22px; font-weight: 700; color: var(--text); }
-  .header-sub { font-size: 14px; color: var(--gray-text); }
+  .header-title { font-size: 20px; font-weight: 700; color: var(--text); }
 
   /* TABS */
   .tabs {
@@ -427,12 +423,44 @@
 <body>
 
 <div class="header">
-  <div style="display:flex;align-items:center;justify-content:space-between">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
     <div class="header-title">🛒✅ ניהול הבית</div>
     <div style="display:flex;align-items:center;gap:6px">
       <span id="sync-status" style="font-size: 11px; color: var(--green-dark);">✅ מסונכרן</span>
       <button onclick="loadFromSheets().then(renderAll)" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 7px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)" title="רענן">🔄</button>
       <button onclick="openSettings()" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 8px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)">⚙️</button>
+    </div>
+  </div>
+  <!-- Navigation — always visible -->
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;width:100%">
+    <div onclick="switchTab(&#39;home&#39;)" id="tab-home" style="text-align:center;padding:6px 2px;border-radius:8px;background:linear-gradient(135deg,#6366F1,#0EA5E9);cursor:pointer;box-shadow:0 2px 8px rgba(99,102,241,0.3)">
+      <div style="font-size:18px">🏠</div>
+      <div style="font-size:15px;font-weight:500;color:white">בית</div>
+    </div>
+    <div onclick="switchTab(&#39;shop&#39;)" id="tab-shop" style="text-align:center;padding:6px 2px;border-radius:8px;background:#E0F2FE;cursor:pointer">
+      <div style="font-size:18px">🛒</div>
+      <div style="font-size:15px;font-weight:500;color:#0369A1">קניות</div>
+      <div id="shop-count" style="font-size:11px;color:#0369A1">20 פריטים</div>
+    </div>
+    <div onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks" style="text-align:center;padding:6px 2px;border-radius:8px;background:#EEEDFE;cursor:pointer">
+      <div style="font-size:18px">✅</div>
+      <div style="font-size:15px;font-weight:500;color:#534AB7">משימות</div>
+      <div id="tasks-count" style="font-size:11px;color:#534AB7">4 פתוחות</div>
+    </div>
+    <div onclick="switchTab(&#39;events&#39;)" id="tab-events" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FCE7F3;cursor:pointer">
+      <div style="font-size:18px">📅</div>
+      <div style="font-size:15px;font-weight:500;color:#9D174D">אירועים</div>
+      <div id="events-count" style="font-size:11px;color:#9D174D">7 קרובים</div>
+    </div>
+    <div onclick="switchTab(&#39;wishes&#39;)" id="tab-wishes" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FEF9C3;cursor:pointer">
+      <div style="font-size:18px">🌈</div>
+      <div style="font-size:15px;font-weight:500;color:#854D0E">רצונות</div>
+      <div id="wishes-count" style="font-size:11px;color:#854D0E">4 פתוחים</div>
+    </div>
+    <div onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="text-align:center;padding:6px 2px;border-radius:8px;background:#ECFDF5;cursor:pointer">
+      <div style="font-size:18px">🧳</div>
+      <div style="font-size:15px;font-weight:500;color:#065F46">צידה</div>
+      <div id="travel-count" style="font-size:11px;color:#065F46">57 פריטים</div>
     </div>
   </div>
 </div>
@@ -442,44 +470,12 @@
 
   <!-- Greeting -->
   <div style="background:white;border-radius:12px;border:0.5px solid var(--gray-border);padding:12px 16px;margin-bottom:10px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
       <div>
         <div style="font-size:17px;font-weight:500;color:var(--text)" id="home-greeting">שלום 👋</div>
         <div style="font-size:12px;color:var(--gray-text);margin-top:2px" id="home-date">יום חמישי, 16 ביולי</div>
       </div>
       <div id="home-sync-status" style="font-size:11px;color:var(--gray-text)"></div>
-    </div>
-    <!-- Navigation -->
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px">
-      <div onclick="switchTab(&#39;home&#39;)" id="tab-home" style="text-align:center;padding:6px 2px;border-radius:8px;background:#E5E7EB;cursor:pointer">
-        <div style="font-size:18px">🏠</div>
-        <div style="font-size:15px;font-weight:500;color:#374151">בית</div>
-      </div>
-      <div onclick="switchTab(&#39;shop&#39;)" id="tab-shop" style="text-align:center;padding:6px 2px;border-radius:8px;background:#E0F2FE;cursor:pointer">
-        <div style="font-size:18px">🛒</div>
-        <div style="font-size:15px;font-weight:500;color:#0369A1">קניות</div>
-        <div id="shop-count" style="font-size:11px;color:#0369A1">20 פריטים</div>
-      </div>
-      <div onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks" style="text-align:center;padding:6px 2px;border-radius:8px;background:#EEEDFE;cursor:pointer">
-        <div style="font-size:18px">✅</div>
-        <div style="font-size:15px;font-weight:500;color:#534AB7">משימות</div>
-        <div id="tasks-count" style="font-size:11px;color:#534AB7">4 פתוחות</div>
-      </div>
-      <div onclick="switchTab(&#39;events&#39;)" id="tab-events" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FCE7F3;cursor:pointer">
-        <div style="font-size:18px">📅</div>
-        <div style="font-size:15px;font-weight:500;color:#9D174D">אירועים</div>
-        <div id="events-count" style="font-size:11px;color:#9D174D">6 קרובים</div>
-      </div>
-      <div onclick="switchTab(&#39;wishes&#39;)" id="tab-wishes" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FEF9C3;cursor:pointer">
-        <div style="font-size:18px">🌈</div>
-        <div style="font-size:15px;font-weight:500;color:#854D0E">רצונות</div>
-        <div id="wishes-count" style="font-size:11px;color:#854D0E">4 פתוחים</div>
-      </div>
-      <div onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="text-align:center;padding:6px 2px;border-radius:8px;background:#ECFDF5;cursor:pointer">
-        <div style="font-size:18px">🧳</div>
-        <div style="font-size:15px;font-weight:500;color:#065F46">צידה</div>
-        <div id="travel-count" style="font-size:11px;color:#065F46">57 פריטים</div>
-      </div>
     </div>
   </div>
 
@@ -489,16 +485,16 @@
       <span style="font-size:13px;font-weight:500;color:var(--text)">📅 השבוע</span>
       <div style="display:flex;gap:6px;align-items:center">
         <button onclick="changeWeek(-1)" style="font-size:12px;padding:3px 8px;border-radius:6px;border:0.5px solid var(--gray-border);background:white;cursor:pointer;color:var(--gray-text)">‹</button>
-        <span id="home-week-title" style="font-size:11px;color:var(--gray-text)">12 יולי–18 יולי</span>
+        <span id="home-week-title" style="font-size:11px;color:var(--gray-text)">19 יולי–25 יולי</span>
         <button onclick="changeWeek(1)" style="font-size:12px;padding:3px 8px;border-radius:6px;border:0.5px solid var(--gray-border);background:white;cursor:pointer;color:var(--gray-text)">›</button>
       </div>
     </div>
 
     <!-- Day headers -->
-    <div id="home-day-headers" style="display:grid;grid-template-columns:28px repeat(7,1fr);border-bottom:0.5px solid var(--gray-border)"><div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">א׳</div><div style="font-size:13px;color:var(--text);font-weight:400">12</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ב׳</div><div style="font-size:13px;color:var(--text);font-weight:400">13</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ג׳</div><div style="font-size:13px;color:var(--text);font-weight:400">14</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ד׳</div><div style="font-size:13px;color:var(--text);font-weight:400">15</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border); background: rgb(240, 247, 255); border-top: 2px solid rgb(24, 95, 165);"><div style="font-size:9px;color:#185FA5;font-weight:500">ה׳</div><div style="font-size:13px;color:#185FA5;font-weight:500">16</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ו׳</div><div style="font-size:13px;color:var(--text);font-weight:400">17</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ש׳</div><div style="font-size:13px;color:var(--text);font-weight:400">18</div></div></div>
+    <div id="home-day-headers" style="display:grid;grid-template-columns:28px repeat(7,1fr);border-bottom:0.5px solid var(--gray-border)"><div style="width:28px;flex-shrink:0"></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">א׳</div><div style="font-size:13px;color:var(--text);font-weight:400">19</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ב׳</div><div style="font-size:13px;color:var(--text);font-weight:400">20</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ג׳</div><div style="font-size:13px;color:var(--text);font-weight:400">21</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ד׳</div><div style="font-size:13px;color:var(--text);font-weight:400">22</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ה׳</div><div style="font-size:13px;color:var(--text);font-weight:400">23</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ו׳</div><div style="font-size:13px;color:var(--text);font-weight:400">24</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ש׳</div><div style="font-size:13px;color:var(--text);font-weight:400">25</div></div></div>
 
     <!-- Time grid -->
-    <div id="home-time-grid" style="overflow-y:auto;max-height:220px"><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">8:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">9:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">10:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">11:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">12:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">13:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">14:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">15:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">16:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">17:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">18:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">19:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div></div>
+    <div id="home-time-grid" style="overflow-y:auto;max-height:220px"><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">8:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"><div style="margin: 1px 2px; background: rgb(219, 234, 254); border-right: 3px solid rgb(29, 78, 216); border-radius: 4px; padding: 2px 4px; overflow: hidden;"><div style="font-size:9px;font-weight:500;color:#1D4ED8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">גל בחופש</div></div></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"><div style="position: absolute; top: 16px; left: 2px; right: 2px; height: 36px; background: rgb(220, 252, 231); border-right: 3px solid rgb(22, 101, 52); border-radius: 4px; padding: 2px 4px; z-index: 10; overflow: hidden;"><div style="font-size:9px;font-weight:500;color:#166534;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מסיבת סיום של הגן של גל</div><div style="font-size:8px;color:#166534">08:30 · כולם</div></div></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">9:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">10:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">11:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">12:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">13:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">14:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">15:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">16:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">17:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">18:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">19:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div></div>
 
     <!-- Legend -->
     <div id="home-cal-legend" style="padding:6px 14px;border-top:0.5px solid var(--gray-border);display:flex;gap:10px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#DCFCE7;border-left:2px solid #166534"></div><span style="font-size:10px;color:var(--gray-text)">כולם</span></div><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#FCE7F3;border-left:2px solid #9D174D"></div><span style="font-size:10px;color:var(--gray-text)">אבא</span></div><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#DBEAFE;border-left:2px solid #1D4ED8"></div><span style="font-size:10px;color:var(--gray-text)">אמא</span></div></div>
@@ -1222,7 +1218,11 @@
       <div id="events-list"><div style="font-size: 11px; font-weight: 600; color: rgb(157, 23, 77); padding: 6px 14px; background: rgb(252, 231, 243); border-bottom: 1px solid rgb(249, 168, 212);">קרובים</div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גל בחופש</div>
-      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        
+        
+        
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
       <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">23.7.26</span>
@@ -1239,10 +1239,14 @@
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מסיבת סיום של הגן של גל</div>
-      <div style="font-size:12px;color:var(--gray-text);margin-top:2px">החצר האחורית הוד השרון </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 08:30</span>
+        
+        <span style="font-size:11px;color:var(--gray-text)">החצר האחורית הוד השרון </span>
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">24.7.26 08:30</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">24.7.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם, כולם</div>
     <div style="position:relative;flex-shrink:0">
@@ -1255,11 +1259,36 @@
     </div>
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">בדיקת עיניים לגל</div>
-      
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מנקות</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 10:00–12:00</span>
+        <span style="font-size:11px;color:#534AB7">🔁 כל שבועיים</span>
+        
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">3.8.26 09:00</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">29.7.26</span>
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם, כולם</div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleEventMenu(18)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="event-menu-18" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeEventMenus();addToCalendar(18)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
+        <div onclick="closeEventMenus();openEditEvent(18)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeEventMenus();deleteEvent(18)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="opacity: 1;">
+    <div style="flex:1;min-width:0">
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">בדיקת עיניים לגל</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 09:00</span>
+        
+        
+      </div>
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0">
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">3.8.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם</div>
     <div style="position:relative;flex-shrink:0">
@@ -1273,10 +1302,14 @@
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">פדיקור לקרן</div>
-      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 09:00</span>
+        
+        
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">4.8.26 09:00</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">4.8.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אמא</div>
     <div style="position:relative;flex-shrink:0">
@@ -1290,7 +1323,11 @@
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">החזרת הלוואה</div>
-      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        
+        
+        
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
       <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">16.8.26</span>
@@ -1307,10 +1344,14 @@
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נופש בעין חרוד</div>
-      
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 09:33</span>
+        
+        
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">27.8.26 09:33</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">27.8.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם, כולם</div>
     <div style="position:relative;flex-shrink:0">
@@ -1324,10 +1365,14 @@
   </div><div style="font-size: 11px; font-weight: 600; color: var(--gray-text); padding: 6px 14px; background: var(--gray-bg); border-bottom: 1px solid var(--gray-border); border-top: 1px solid var(--gray-border);">עברו</div><div class="item-row" style="opacity: 0.6;">
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קולו וגסטרו סקופיה</div>
-      <div style="font-size:12px;color:var(--gray-text);margin-top:2px">הרצליה מדיקל החושלים 6 פיתוח</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        <span style="font-size:11px;color:var(--gray-text)">🕐 12:30</span>
+        
+        <span style="font-size:11px;color:var(--gray-text)">הרצליה מדיקל החושלים 6 פיתוח</span>
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">15.6.26 12:30</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">15.6.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אבא</div>
     <div style="position:relative;flex-shrink:0">
@@ -1363,7 +1408,7 @@
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="events-count-text">6 אירועים קרובים</span>
+      <span style="color:var(--gray-text)" id="events-count-text">7 אירועים קרובים</span>
     </div>
   </div>
 </div>
@@ -1873,9 +1918,24 @@
         <label>תאריך *</label>
         <input type="date" id="event-date-input">
       </div>
+      <div style="display:flex;gap:8px">
+        <div style="flex:1">
+          <label>שעת התחלה</label>
+          <input type="time" id="event-time-input" style="width:100%">
+        </div>
+        <div style="flex:1">
+          <label>שעת סיום</label>
+          <input type="time" id="event-end-time-input" style="width:100%">
+        </div>
+      </div>
       <div>
-        <label>שעה (אופציונלי)</label>
-        <input type="time" id="event-time-input">
+        <label>חזרתיות</label>
+        <select id="event-recurrence-input" style="width:100%;font-family:&#39;Heebo&#39;,sans-serif;font-size:14px;padding:8px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);direction:rtl">
+          <option value="">ללא חזרה</option>
+          <option value="weekly">כל שבוע</option>
+          <option value="biweekly">כל שבועיים</option>
+          <option value="monthly">כל חודש</option>
+        </select>
       </div>
       <div>
         <label>מי הולך</label>
@@ -2145,7 +2205,7 @@ async function syncToSupabase() {
         state.tasks.map(t => ({id: t.id, name: t.name, owner: t.owner||'', due: t.due||null, done: t.done}))
       ) : Promise.resolve(),
       state.events.length ? sbFetch('events', 'POST',
-        state.events.map(e => ({id: e.id, name: e.name, date: e.date, time: e.time||'', notes: e.notes||'', attendees: JSON.stringify(e.attendees||[])}))
+        state.events.map(e => ({id: e.id, name: e.name, date: e.date, time: e.time||'', endtime: e.endTime||'', recurrence: e.recurrence||'', notes: e.notes||'', attendees: JSON.stringify(e.attendees||[])}))
       ) : Promise.resolve(),
       state.wishes.length ? sbFetch('wishes', 'POST',
         state.wishes.map(w => ({id: w.id, name: w.name, owner: w.owner||'כולם', category: w.category||'אחר', priority: w.priority||'בינוני', cost: w.cost||null, notes: w.notes||'', done: w.done}))
@@ -2215,7 +2275,7 @@ async function loadFromSupabase() {
     }
     if (eventData && eventData.length) {
       state.events = eventData.map(r => ({
-        id: r.id, name: r.name, date: r.date, time: r.time||'', notes: r.notes||'',
+        id: r.id, name: r.name, date: r.date, time: r.time||'', endTime: r.endtime||'', recurrence: r.recurrence||'', notes: r.notes||'',
         attendees: r.attendees ? JSON.parse(r.attendees) : []
       }));
     }
@@ -3025,6 +3085,8 @@ function openAddEvent() {
   document.getElementById('event-name-input').value = '';
   document.getElementById('event-date-input').value = '';
   document.getElementById('event-time-input').value = '';
+  document.getElementById('event-end-time-input').value = '';
+  document.getElementById('event-recurrence-input').value = '';
   document.getElementById('event-notes-input').value = '';
   renderAttendees([]);
   document.getElementById('event-modal').classList.add('open');
@@ -3038,6 +3100,8 @@ function openEditEvent(id) {
   document.getElementById('event-name-input').value = ev.name;
   document.getElementById('event-date-input').value = ev.date;
   document.getElementById('event-time-input').value = ev.time || '';
+  document.getElementById('event-end-time-input').value = ev.endTime || '';
+  document.getElementById('event-recurrence-input').value = ev.recurrence || '';
   document.getElementById('event-notes-input').value = ev.notes || '';
   renderAttendees(ev.attendees || []);
   document.getElementById('event-modal').classList.add('open');
@@ -3084,14 +3148,16 @@ function saveEvent() {
   const date = document.getElementById('event-date-input').value;
   if (!name || !date) return;
   const time = document.getElementById('event-time-input').value;
+  const endTime = document.getElementById('event-end-time-input').value;
+  const recurrence = document.getElementById('event-recurrence-input').value;
   const notes = document.getElementById('event-notes-input').value;
   const attendees = getSelectedAttendees();
 
   if (currentEditEventId) {
     const ev = state.events.find(e => e.id === currentEditEventId);
-    if (ev) { ev.name = name; ev.date = date; ev.time = time; ev.notes = notes; ev.attendees = attendees; }
+    if (ev) { ev.name = name; ev.date = date; ev.time = time; ev.endTime = endTime; ev.recurrence = recurrence; ev.notes = notes; ev.attendees = attendees; }
   } else {
-    state.events.push({ id: state.nextEventId++, name, date, time, notes, attendees });
+    state.events.push({ id: state.nextEventId++, name, date, time, endTime, recurrence, notes, attendees });
   }
   save(); closeEventModal(); renderEvents(); updateCounts();
 }
@@ -3154,14 +3220,20 @@ function makeEventRow(ev, isPast = false) {
   row.style.opacity = isPast ? '0.6' : '1';
   const dateStr = new Date(ev.date).toLocaleDateString('he-IL', {day:'numeric', month:'numeric', year:'2-digit'});
   const attendeesStr = ev.attendees && ev.attendees.length ? ev.attendees.join(', ') : '—';
+  const timeStr = ev.time ? ev.time + (ev.endTime ? '–' + ev.endTime : '') : '';
+  const recurrenceStr = ev.recurrence === 'weekly' ? '🔁 כל שבוע' : ev.recurrence === 'biweekly' ? '🔁 כל שבועיים' : ev.recurrence === 'monthly' ? '🔁 כל חודש' : '';
 
   row.innerHTML = `
     <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${ev.name}</div>
-      ${ev.notes ? `<div style="font-size:12px;color:var(--gray-text);margin-top:2px">${ev.notes}</div>` : ''}
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:2px">
+        ${timeStr ? `<span style="font-size:11px;color:var(--gray-text)">🕐 ${timeStr}</span>` : ''}
+        ${recurrenceStr ? `<span style="font-size:11px;color:#534AB7">${recurrenceStr}</span>` : ''}
+        ${ev.notes ? `<span style="font-size:11px;color:var(--gray-text)">${ev.notes}</span>` : ''}
+      </div>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">${dateStr}${ev.time ? ' ' + ev.time : ''}</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">${dateStr}</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">${attendeesStr}</div>
     <div style="position:relative;flex-shrink:0">
@@ -3623,12 +3695,12 @@ function makeTravelRow(item) {
 
 // ─── HOME ─────────────────────────────────────────────────
 let homeWeekOffset = 0;
-const DAYS_HE = ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
+const DAYS_HE = ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳']; // Sun=0 .. Sat=6
 const MONTHS_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
 
 function getWeekStart(offset) {
   const today = new Date();
-  const dow = today.getDay();
+  const dow = today.getDay(); // 0=Sun, 6=Sat
   const sunday = new Date(today);
   sunday.setDate(today.getDate() - dow + (offset * 7));
   sunday.setHours(0,0,0,0);
@@ -3657,6 +3729,10 @@ function renderHome() {
   document.getElementById('home-wish-text').textContent = openWishes.length > 0 ? openWishes[Math.floor(Math.random()*openWishes.length)].name : 'אין רצונות עדיין';
 }
 
+function toLocalISO(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
 function renderWeeklyCalendar() {
   const weekStart = getWeekStart(homeWeekOffset);
   const days = [];
@@ -3676,7 +3752,7 @@ function renderWeeklyCalendar() {
 
   // Day headers
   const headersEl = document.getElementById('home-day-headers');
-  headersEl.innerHTML = '<div></div>';
+  headersEl.innerHTML = '<div style="width:28px;flex-shrink:0"></div>';
   days.forEach(d => {
     const isToday = d.getTime() === today.getTime();
     const div = document.createElement('div');
@@ -3685,18 +3761,37 @@ function renderWeeklyCalendar() {
     headersEl.appendChild(div);
   });
 
-  // Time grid — hours 7-22
+  // Time grid
   const gridEl = document.getElementById('home-time-grid');
   gridEl.innerHTML = '';
   const HOUR_HEIGHT = 32;
   const START_HOUR = 8;
   const END_HOUR = 19;
 
-  // Build events map per day
+  // Build events map per day using LOCAL date
   const eventsByDay = {};
   days.forEach(d => {
-    const iso = d.toISOString().split('T')[0];
-    eventsByDay[iso] = state.events.filter(e => e.date === iso);
+    eventsByDay[toLocalISO(d)] = [];
+  });
+
+  state.events.forEach(ev => {
+    days.forEach(d => {
+      const iso = toLocalISO(d);
+      if (ev.date === iso) {
+        if (!eventsByDay[iso].find(e => e.id === ev.id)) eventsByDay[iso].push(ev);
+        return;
+      }
+      if (ev.recurrence && ev.date <= iso) {
+        const startDate = new Date(ev.date + 'T00:00:00');
+        const dayDiff = Math.round((d - startDate) / (1000 * 60 * 60 * 24));
+        if (ev.recurrence === 'weekly' && dayDiff % 7 === 0 && dayDiff > 0) eventsByDay[iso].push(ev);
+        if (ev.recurrence === 'biweekly' && dayDiff % 14 === 0 && dayDiff > 0) eventsByDay[iso].push(ev);
+        if (ev.recurrence === 'monthly') {
+          const evDay = new Date(ev.date + 'T00:00:00').getDate();
+          if (d.getDate() === evDay && dayDiff > 0) eventsByDay[iso].push(ev);
+        }
+      }
+    });
   });
 
   for (let h = START_HOUR; h <= END_HOUR; h++) {
@@ -3709,22 +3804,40 @@ function renderWeeklyCalendar() {
     row.appendChild(timeCell);
 
     days.forEach(d => {
-      const iso = d.toISOString().split('T')[0];
+      const iso = toLocalISO(d);
       const isToday = d.getTime() === today.getTime();
       const cell = document.createElement('div');
       cell.style.cssText = `border-left:0.5px solid var(--gray-border);position:relative;${isToday ? 'background:#F8FBFF;' : ''}`;
 
-      // Place events that start this hour
-      (eventsByDay[iso] || []).forEach(ev => {
-        if (!ev.time) return;
+      // All-day events (no time) — show at top of first hour row
+      if (h === START_HOUR) {
+        (eventsByDay[iso] || []).filter(ev => !ev.time).forEach(ev => {
+          const c = getEventColor(ev);
+          const tag = document.createElement('div');
+          tag.style.cssText = `margin:1px 2px;background:${c.bg};border-right:3px solid ${c.dark};border-radius:4px;padding:2px 4px;overflow:hidden`;
+          tag.innerHTML = `<div style="font-size:9px;font-weight:500;color:${c.dark};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ev.name}${ev.recurrence ? ' 🔁' : ''}</div>`;
+          cell.appendChild(tag);
+        });
+      }
+
+      // Timed events
+      (eventsByDay[iso] || []).filter(ev => ev.time).forEach(ev => {
         const evHour = parseInt(ev.time.split(':')[0]);
         const evMin = parseInt(ev.time.split(':')[1]);
         if (evHour !== h) return;
         const topOffset = (evMin / 60) * HOUR_HEIGHT;
+        // Calculate height based on end time
+        let heightPx = 36;
+        if (ev.endTime) {
+          const endHour = parseInt(ev.endTime.split(':')[0]);
+          const endMin = parseInt(ev.endTime.split(':')[1]);
+          const durationMins = (endHour * 60 + endMin) - (evHour * 60 + evMin);
+          heightPx = Math.max(28, (durationMins / 60) * HOUR_HEIGHT);
+        }
         const c = getEventColor(ev);
         const tag = document.createElement('div');
-        tag.style.cssText = `position:absolute;top:${topOffset}px;left:2px;right:2px;min-height:36px;background:${c.bg};border-right:3px solid ${c.dark};border-radius:4px;padding:2px 4px;z-index:10;overflow:hidden`;
-        tag.innerHTML = `<div style="font-size:9px;font-weight:500;color:${c.dark};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ev.name}</div><div style="font-size:8px;color:${c.dark}">${ev.time}${ev.attendees&&ev.attendees.length?' · '+ev.attendees[0]:''}</div>`;
+        tag.style.cssText = `position:absolute;top:${topOffset}px;left:2px;right:2px;height:${heightPx}px;background:${c.bg};border-right:3px solid ${c.dark};border-radius:4px;padding:2px 4px;z-index:10;overflow:hidden`;
+        tag.innerHTML = `<div style="font-size:9px;font-weight:500;color:${c.dark};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ev.name}${ev.recurrence ? ' 🔁' : ''}</div><div style="font-size:8px;color:${c.dark}">${ev.time}${ev.endTime ? '–'+ev.endTime : ''}${ev.attendees&&ev.attendees.length?' · '+ev.attendees[0]:''}</div>`;
         cell.appendChild(tag);
       });
 
