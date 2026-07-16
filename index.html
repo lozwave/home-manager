@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_49.html -->
+<!-- saved from url=(0046)file:///C:/Users/keren/Downloads/index_58.html -->
 <html lang="he" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,8 +97,10 @@
     justify-content: center;
     gap: 6px;
   }
+  .tab-btn.active-home { color: #374151; border-bottom-color: #6B7280; background:#E5E7EB !important; }
   .tab-btn.active-shop { color: #0369A1; border-bottom-color: #0369A1; background:#BAE6FD !important; }
   .tab-btn.active-tasks { color: #3C3489; border-bottom-color: #534AB7; background:#CECBF6 !important; }
+  .tab-btn.active-events { color: #72243E; border-bottom-color: #9D174D; background:#F4C0D1 !important; }
   .tab-btn.active-wishes { color: #854D0E; border-bottom-color: #CA8A04; background:#FEF08A !important; }
   .tab-btn.active-travel { color: #065F46; border-bottom-color: #059669; background:#A7F3D0 !important; }
 
@@ -425,40 +427,109 @@
 <body>
 
 <div class="header">
-  <div>
+  <div style="display:flex;align-items:center;justify-content:space-between">
     <div class="header-title">🛒✅ ניהול הבית</div>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <span id="sync-status" style="font-size: 11px; color: var(--green-dark);">✅ מסונכרן</span>
-    <button onclick="loadFromSheets().then(renderAll)" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:5px 8px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)" title="רענן">🔄</button>
-    <button onclick="openSettings()" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:5px 10px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)">⚙️ הגדרות</button>
+    <div style="display:flex;align-items:center;gap:6px">
+      <span id="sync-status" style="font-size: 11px; color: var(--green-dark);">✅ מסונכרן</span>
+      <button onclick="loadFromSheets().then(renderAll)" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 7px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)" title="רענן">🔄</button>
+      <button onclick="openSettings()" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 8px;font-family:&#39;Heebo&#39;,sans-serif;font-size:12px;cursor:pointer;color:var(--text-muted)">⚙️</button>
+    </div>
   </div>
 </div>
 
-<div class="tabs">
-  <button class="tab-btn active-shop" onclick="switchTab(&#39;shop&#39;)" id="tab-shop" style="background:#E0F2FE">
-    🛒 קניות <span id="shop-count" style="background:white;color:#0369A1;font-size:10px;padding:1px 6px;border-radius:10px">19</span>
-  </button>
-  <button class="tab-btn" onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks" style="background:#EEEDFE">
-    ✅ משימות <span id="tasks-count" style="background:white;color:#534AB7;font-size:10px;padding:1px 6px;border-radius:10px">5</span>
-  </button>
-  <button class="tab-btn" onclick="switchTab(&#39;events&#39;)" id="tab-events" style="background:#FCE7F3">
-    📅 אירועים <span id="events-count" style="background:white;color:#9D174D;font-size:10px;padding:1px 6px;border-radius:10px">5</span>
-  </button>
-  <button class="tab-btn" onclick="switchTab(&#39;wishes&#39;)" id="tab-wishes" style="background:#FEF9C3">
-    🌈 רצונות <span id="wishes-count" style="background:white;color:#854D0E;font-size:10px;padding:1px 6px;border-radius:10px">3</span>
-  </button>
-  <button class="tab-btn" onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="background:#ECFDF5">
-    🧳 צידה לדרך <span id="travel-count" style="background:white;color:#065F46;font-size:10px;padding:1px 6px;border-radius:10px">57</span>
-  </button>
+<!-- HOME SECTION -->
+<div class="section active" id="section-home" style="padding:1rem;max-width:640px;margin:0 auto">
+
+  <!-- Greeting -->
+  <div style="background:white;border-radius:12px;border:0.5px solid var(--gray-border);padding:12px 16px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div>
+        <div style="font-size:17px;font-weight:500;color:var(--text)" id="home-greeting">שלום 👋</div>
+        <div style="font-size:12px;color:var(--gray-text);margin-top:2px" id="home-date">יום חמישי, 16 ביולי</div>
+      </div>
+      <div id="home-sync-status" style="font-size:11px;color:var(--gray-text)"></div>
+    </div>
+    <!-- Navigation -->
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px">
+      <div onclick="switchTab(&#39;home&#39;)" id="tab-home" style="text-align:center;padding:6px 2px;border-radius:8px;background:#E5E7EB;cursor:pointer">
+        <div style="font-size:18px">🏠</div>
+        <div style="font-size:15px;font-weight:500;color:#374151">בית</div>
+      </div>
+      <div onclick="switchTab(&#39;shop&#39;)" id="tab-shop" style="text-align:center;padding:6px 2px;border-radius:8px;background:#E0F2FE;cursor:pointer">
+        <div style="font-size:18px">🛒</div>
+        <div style="font-size:15px;font-weight:500;color:#0369A1">קניות</div>
+        <div id="shop-count" style="font-size:11px;color:#0369A1">20 פריטים</div>
+      </div>
+      <div onclick="switchTab(&#39;tasks&#39;)" id="tab-tasks" style="text-align:center;padding:6px 2px;border-radius:8px;background:#EEEDFE;cursor:pointer">
+        <div style="font-size:18px">✅</div>
+        <div style="font-size:15px;font-weight:500;color:#534AB7">משימות</div>
+        <div id="tasks-count" style="font-size:11px;color:#534AB7">4 פתוחות</div>
+      </div>
+      <div onclick="switchTab(&#39;events&#39;)" id="tab-events" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FCE7F3;cursor:pointer">
+        <div style="font-size:18px">📅</div>
+        <div style="font-size:15px;font-weight:500;color:#9D174D">אירועים</div>
+        <div id="events-count" style="font-size:11px;color:#9D174D">6 קרובים</div>
+      </div>
+      <div onclick="switchTab(&#39;wishes&#39;)" id="tab-wishes" style="text-align:center;padding:6px 2px;border-radius:8px;background:#FEF9C3;cursor:pointer">
+        <div style="font-size:18px">🌈</div>
+        <div style="font-size:15px;font-weight:500;color:#854D0E">רצונות</div>
+        <div id="wishes-count" style="font-size:11px;color:#854D0E">4 פתוחים</div>
+      </div>
+      <div onclick="switchTab(&#39;travel&#39;)" id="tab-travel" style="text-align:center;padding:6px 2px;border-radius:8px;background:#ECFDF5;cursor:pointer">
+        <div style="font-size:18px">🧳</div>
+        <div style="font-size:15px;font-weight:500;color:#065F46">צידה</div>
+        <div id="travel-count" style="font-size:11px;color:#065F46">57 פריטים</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly calendar -->
+  <div style="background:white;border-radius:12px;border:0.5px solid var(--gray-border);margin-bottom:10px;overflow:hidden">
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--gray-border);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:13px;font-weight:500;color:var(--text)">📅 השבוע</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button onclick="changeWeek(-1)" style="font-size:12px;padding:3px 8px;border-radius:6px;border:0.5px solid var(--gray-border);background:white;cursor:pointer;color:var(--gray-text)">‹</button>
+        <span id="home-week-title" style="font-size:11px;color:var(--gray-text)">12 יולי–18 יולי</span>
+        <button onclick="changeWeek(1)" style="font-size:12px;padding:3px 8px;border-radius:6px;border:0.5px solid var(--gray-border);background:white;cursor:pointer;color:var(--gray-text)">›</button>
+      </div>
+    </div>
+
+    <!-- Day headers -->
+    <div id="home-day-headers" style="display:grid;grid-template-columns:28px repeat(7,1fr);border-bottom:0.5px solid var(--gray-border)"><div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">א׳</div><div style="font-size:13px;color:var(--text);font-weight:400">12</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ב׳</div><div style="font-size:13px;color:var(--text);font-weight:400">13</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ג׳</div><div style="font-size:13px;color:var(--text);font-weight:400">14</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ד׳</div><div style="font-size:13px;color:var(--text);font-weight:400">15</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border); background: rgb(240, 247, 255); border-top: 2px solid rgb(24, 95, 165);"><div style="font-size:9px;color:#185FA5;font-weight:500">ה׳</div><div style="font-size:13px;color:#185FA5;font-weight:500">16</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ו׳</div><div style="font-size:13px;color:var(--text);font-weight:400">17</div></div><div style="text-align: center; padding: 5px 2px; border-left: 0.5px solid var(--gray-border);"><div style="font-size:9px;color:var(--gray-text);font-weight:400">ש׳</div><div style="font-size:13px;color:var(--text);font-weight:400">18</div></div></div>
+
+    <!-- Time grid -->
+    <div id="home-time-grid" style="overflow-y:auto;max-height:220px"><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">8:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">9:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">10:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">11:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">12:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">13:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">14:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">15:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">16:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">17:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">18:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div><div style="display: grid; grid-template-columns: 28px repeat(7, 1fr); border-bottom: 0.5px solid rgba(0, 0, 0, 0.05); min-height: 32px; position: relative;"><div style="font-size: 9px; color: rgb(170, 170, 170); padding: 3px 2px 0px; text-align: left; line-height: 1;">19:00</div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative; background: rgb(248, 251, 255);"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div><div style="border-left: 0.5px solid var(--gray-border); position: relative;"></div></div></div>
+
+    <!-- Legend -->
+    <div id="home-cal-legend" style="padding:6px 14px;border-top:0.5px solid var(--gray-border);display:flex;gap:10px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#DCFCE7;border-left:2px solid #166534"></div><span style="font-size:10px;color:var(--gray-text)">כולם</span></div><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#FCE7F3;border-left:2px solid #9D174D"></div><span style="font-size:10px;color:var(--gray-text)">אבא</span></div><div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:#DBEAFE;border-left:2px solid #1D4ED8"></div><span style="font-size:10px;color:var(--gray-text)">אמא</span></div></div>
+  </div>
+
+  <!-- Urgent tasks -->
+  <div style="background:white;border-radius:12px;border:0.5px solid var(--gray-border);margin-bottom:10px;overflow:hidden">
+    <div style="padding:10px 14px;border-bottom:0.5px solid var(--gray-border);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:13px;font-weight:500;color:var(--text)">✅ משימות דחופות</span>
+      <span onclick="switchTab(&#39;tasks&#39;)" style="font-size:11px;color:#534AB7;cursor:pointer">הכל ›</span>
+    </div>
+    <div id="home-urgent-tasks"><div style="padding:12px 14px;font-size:13px;color:var(--gray-text);text-align:center">אין משימות דחופות 🎉</div></div>
+  </div>
+
+  <!-- Wish -->
+  <div id="home-wish" style="background:#FFFBEB;border-radius:12px;border:0.5px solid #FDE68A;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="switchTab(&#39;wishes&#39;)">
+    <div style="font-size:22px">🌈</div>
+    <div>
+      <div style="font-size:11px;color:#854D0E;margin-bottom:1px">רצון משפחתי</div>
+      <div style="font-size:13px;font-weight:500;color:#92400E" id="home-wish-text">ריהוט מרפסת</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- SHOPPING SECTION -->
-<div class="section active" id="section-shop">
+<div class="section" id="section-shop">
 
   <div class="card">
     <!-- Category tabs -->
-    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (13)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (6)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
+    <div class="cat-tabs" id="cat-tabs-container"><button class="cat-tab active-cat" style="background: rgb(224, 242, 254); color: rgb(3, 105, 161); border-color: rgb(3, 105, 161);">סופר (14)</button><button class="cat-tab" style="background: rgba(240, 253, 244, 0.533); color: rgb(22, 101, 52); opacity: 0.7;">פארם</button><button class="cat-tab" style="background: rgba(255, 247, 237, 0.533); color: rgb(154, 52, 18); opacity: 0.7;">כלי בניין (6)</button><button class="cat-tab add-cat">+ קטגוריה</button><button class="import-btn" style="margin-right: auto;">🔄 ייבוא מנרכשו</button></div>
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap">
@@ -480,7 +551,7 @@
     </div>
 
     <!-- Items list -->
-    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">4</span></div><div class="item-row" style="background: white;">
+    <div id="shop-items-list" style="background: rgb(224, 242, 254);"><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">אחר</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">6</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(196)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מיסו</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
@@ -495,6 +566,20 @@
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(222)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מיץ לימון</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(222)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(222, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-222" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(222);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(222);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(195)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מירין</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
@@ -506,6 +591,20 @@
             <div id="item-menu-195" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
               <div onclick="editShopItem(195);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
               <div onclick="deleteShopItem(195);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+            </div>
+          </div>
+        </div><div class="item-row" style="background: white;">
+          <div class="chk" onclick="purchaseItem(221)" title="סמן כנרכש"></div>
+          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ניילון נצמד</div>
+          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
+          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">—</div>
+          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">—</div>
+          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
+            <button class="del-btn" onclick="openPriceSearch(221)" title="חפש מחיר" style="font-size:13px">🔍</button>
+            <button class="del-btn" onclick="toggleItemMenu(221, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
+            <div id="item-menu-221" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+              <div onclick="editShopItem(221);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+              <div onclick="deleteShopItem(221);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
@@ -564,7 +663,7 @@
               <div onclick="deleteShopItem(217);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
-        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">7</span></div><div class="item-row" style="background: white;">
+        </div><div style="display: flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgb(224, 242, 254); border-bottom: 1px solid rgba(3, 105, 161, 0.2); border-top: 1px solid rgba(3, 105, 161, 0.133);"><span style="font-size:12px;font-weight:600;color:#0369A1">מוצרי חלב</span><span style="font-size:11px;color:#0369A1;background:white;padding:1px 6px;border-radius:10px;opacity:0.8">6</span></div><div class="item-row" style="background: white;">
           <div class="chk" onclick="purchaseItem(206)" title="סמן כנרכש"></div>
           <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">ביצים</div>
           <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
@@ -576,20 +675,6 @@
             <div id="item-menu-206" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
               <div onclick="editShopItem(206);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
               <div onclick="deleteShopItem(206);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-            </div>
-          </div>
-        </div><div class="item-row" style="background: white;">
-          <div class="chk" onclick="purchaseItem(209)" title="סמן כנרכש"></div>
-          <div style="flex:1;font-size:14px;color:var(--text);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גבינה סקי</div>
-          <div style="width:38px;text-align:center;font-size:13px;color:var(--text)">×1</div>
-          <div style="width:50px;text-align:center;font-size:13px;color:var(--text)">₪6</div>
-          <div style="width:50px;text-align:center;font-size:14px;font-weight:700;color:var(--amber)">₪6</div>
-          <div style="display:flex;gap:2px;flex-shrink:0;position:relative">
-            <button class="del-btn" onclick="openPriceSearch(209)" title="חפש מחיר" style="font-size:13px">🔍</button>
-            <button class="del-btn" onclick="toggleItemMenu(209, this)" style="font-size:16px;font-weight:700;padding:2px 6px" title="פעולות">⋮</button>
-            <div id="item-menu-209" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;min-width:100px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-              <div onclick="editShopItem(209);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-              <div onclick="deleteShopItem(209);closeItemMenus()" style="padding:8px 12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
             </div>
           </div>
         </div><div class="item-row" style="background: white;">
@@ -668,11 +753,11 @@
     <div class="summary-bar" style="background:#BAE6FD;border-radius:0">
       <div style="display:flex;gap:8px;align-items:center">
         <span style="color:#0369A1;font-weight:500">סה"כ משוער לרכישה:</span>
-        <span id="shop-total" style="font-weight:700;color:#0369A1">₪226</span>
+        <span id="shop-total" style="font-weight:700;color:#0369A1">₪220</span>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <span style="color:#0369A1" id="shop-progress-text">38 מתוך 51</span>
-        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 75%; background: rgb(3, 105, 161);"></div></div>
+        <span style="color:#0369A1" id="shop-progress-text">38 מתוך 52</span>
+        <div class="progress-wrap"><div class="progress-fill" id="shop-progress-bar" style="width: 73%; background: rgb(3, 105, 161);"></div></div>
       </div>
     </div>
 
@@ -690,13 +775,6 @@
         <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">טופו</div>
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
         <button class="del-btn" onclick="deletePurchased(220)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
-      </div><div class="item-row" style="background: rgb(249, 249, 249);">
-        <div class="chk checked-green" onclick="unpurchaseItem(185)" title="החזר לרשימה" style="cursor:pointer">
-          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
-        </div>
-        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">מיץ לימון</div>
-        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">—</div>
-        <button class="del-btn" onclick="deletePurchased(185)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(153)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
@@ -887,6 +965,13 @@
         <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪22</div>
         <button class="del-btn" onclick="deletePurchased(200)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
       </div><div class="item-row" style="background: rgb(249, 249, 249);">
+        <div class="chk checked-green" onclick="unpurchaseItem(209)" title="החזר לרשימה" style="cursor:pointer">
+          <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+        </div>
+        <div style="flex:1;font-size:14px;color:var(--gray-text);text-decoration:line-through">גבינה סקי</div>
+        <div style="width:55px;text-align:center;font-size:13px;color:var(--gray-text)">₪6</div>
+        <button class="del-btn" onclick="deletePurchased(209)" title="מחק לצמיתות" style="color:var(--red)">❌</button>
+      </div><div class="item-row" style="background: rgb(249, 249, 249);">
         <div class="chk checked-green" onclick="unpurchaseItem(181)" title="החזר לרשימה" style="cursor:pointer">
           <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
         </div>
@@ -982,25 +1067,7 @@
     </div>
 
     <!-- Tasks list -->
-    <div id="tasks-list"><div class="section-hdr" style="background: rgb(252, 231, 243); color: rgb(157, 23, 77); padding: 5px 14px; font-size: 12px; font-weight: 600;">אבא</div><div class="item-row" style="position: relative;">
-    <div class="chk " onclick="toggleTask(10)" title="סמן הושלם">
-      
-    </div>
-    <div style="flex:1;min-width:0">
-      <div class="item-name " style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מכסה מזגן בחדר של גל להדביק</div>
-    </div>
-    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-      <div style="width:75px;text-align:center"><span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">אבא</span></div>
-      <div style="width:65px;text-align:center"><span class="tag" style="background:var(--gray-bg);color:var(--gray-text);display:block;text-align:center;font-size:13px">26.4</span></div>
-    </div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleTaskMenu(10)" style="font-size:16px;font-weight:700;padding:2px 8px" title="פעולות">⋮</button>
-      <div id="task-menu-10" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeTaskMenus();editTask(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeTaskMenus();deleteTask(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
-  </div><div class="section-hdr" style="background: rgb(219, 234, 254); color: rgb(29, 78, 216); padding: 5px 14px; font-size: 12px; font-weight: 600;">ללא אחראי</div><div class="item-row" style="position: relative;">
+    <div id="tasks-list"><div class="section-hdr" style="background: rgb(219, 234, 254); color: rgb(29, 78, 216); padding: 5px 14px; font-size: 12px; font-weight: 600;">ללא אחראי</div><div class="item-row" style="position: relative;">
     <div class="chk " onclick="toggleTask(12)" title="סמן הושלם">
       
     </div>
@@ -1079,9 +1146,27 @@
       <div class="purchased-toggle" onclick="toggleCompleted()" style="border-top:1px solid var(--gray-border)">
         <span id="completed-arrow">▸</span>
         <span>הושלמו</span>
-        <span id="completed-count-badge" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">1</span>
+        <span id="completed-count-badge" style="background:var(--purple-light);color:var(--purple-dark);font-size:10px;padding:1px 6px;border-radius:10px;margin-right:4px">2</span>
       </div>
       <div id="completed-list" style="display: block;"><div class="item-row" style="position: relative;">
+    <div class="chk checked-purple" onclick="toggleTask(10)" title="החזר לפתוח">
+      <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="item-name done" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">מכסה מזגן בחדר של גל להדביק</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+      <div style="width:75px;text-align:center"><span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">אבא</span></div>
+      <div style="width:65px;text-align:center"><span class="tag" style="background:var(--green-light);color:var(--green-dark);display:block;text-align:center;font-size:13px">26.4</span></div>
+    </div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleTaskMenu(10)" style="font-size:16px;font-weight:700;padding:2px 8px" title="פעולות">⋮</button>
+      <div id="task-menu-10" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeTaskMenus();editTask(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeTaskMenus();deleteTask(10)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="position: relative;">
     <div class="chk checked-purple" onclick="toggleTask(15)" title="החזר לפתוח">
       <svg width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
     </div>
@@ -1104,9 +1189,9 @@
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="tasks-progress-text">1 מתוך 6 הושלמו</span>
+      <span style="color:var(--gray-text)" id="tasks-progress-text">2 מתוך 6 הושלמו</span>
       <div style="display:flex;gap:8px;align-items:center">
-        <div class="progress-wrap"><div class="progress-fill" id="tasks-progress-bar" style="width: 17%; background: var(--purple);"></div></div>
+        <div class="progress-wrap"><div class="progress-fill" id="tasks-progress-bar" style="width: 33%; background: var(--purple);"></div></div>
       </div>
     </div>
   </div>
@@ -1116,35 +1201,39 @@
 <!-- EVENTS SECTION -->
 <div class="section" id="section-events">
   <div class="card">
-    <!-- Add event button -->
-    <div style="padding:10px;border-bottom:1px solid var(--gray-border);background:var(--gray-bg)">
-      <button class="add-btn" style="width:100%;background:#9D174D;color:white" onclick="openAddEvent()">+ הוסף אירוע חדש</button>
+    <!-- Toggle + Add button -->
+    <div style="padding:10px;border-bottom:1px solid var(--gray-border);background:var(--gray-bg);display:flex;gap:8px;align-items:center">
+      <button class="add-btn" style="flex:1;background:#9D174D;color:white" onclick="openAddEvent()">+ הוסף אירוע חדש</button>
+      <div style="display:flex;gap:4px">
+        <button id="events-view-list" onclick="setEventsView(&#39;list&#39;)" style="font-size:12px;padding:5px 10px;border-radius:var(--radius-sm);border:1px solid #9D174D;background:#FCE7F3;color:#9D174D;font-family:&#39;Heebo&#39;,sans-serif;cursor:pointer">רשימה</button>
+        <button id="events-view-cal" onclick="setEventsView(&#39;cal&#39;)" style="font-size:12px;padding:5px 10px;border-radius:var(--radius-sm);border:0.5px solid var(--gray-border);background:white;color:var(--gray-text);font-family:&#39;Heebo&#39;,sans-serif;cursor:pointer">יומן</button>
+      </div>
     </div>
 
-    <!-- Column headers -->
-    <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--gray-bg);border-bottom:1px solid var(--gray-border);font-size:11px;font-weight:600;color:var(--gray-text)">
-      <div style="flex:1">אירוע</div>
-      <div style="width:70px;text-align:center">תאריך</div>
-      <div style="width:70px;text-align:center">משתתפים</div>
-      <div style="width:30px"></div>
-    </div>
-
-    <!-- Events list -->
-    <div id="events-list"><div style="font-size: 11px; font-weight: 600; color: rgb(157, 23, 77); padding: 6px 14px; background: rgb(252, 231, 243); border-bottom: 1px solid rgb(249, 168, 212);">קרובים</div><div class="item-row" style="opacity: 1;">
+    <!-- List view -->
+    <div id="events-list-view">
+      <!-- Column headers -->
+      <div style="display:flex;align-items:center;gap:8px;padding:6px 14px;background:var(--gray-bg);border-bottom:1px solid var(--gray-border);font-size:11px;font-weight:600;color:var(--gray-text)">
+        <div style="flex:1">אירוע</div>
+        <div style="width:70px;text-align:center">תאריך</div>
+        <div style="width:70px;text-align:center">משתתפים</div>
+        <div style="width:30px"></div>
+      </div>
+      <div id="events-list"><div style="font-size: 11px; font-weight: 600; color: rgb(157, 23, 77); padding: 6px 14px; background: rgb(252, 231, 243); border-bottom: 1px solid rgb(249, 168, 212);">קרובים</div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">סיור בעוטף</div>
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">גל בחופש</div>
       
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">14.7.26 07:00</span>
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">23.7.26</span>
     </div>
     <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אמא</div>
     <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(6)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-6" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      <button class="del-btn" onclick="toggleEventMenu(16)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="event-menu-16" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeEventMenus();addToCalendar(16)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
+        <div onclick="closeEventMenus();openEditEvent(16)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeEventMenus();deleteEvent(16)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
   </div><div class="item-row" style="opacity: 1;">
@@ -1200,6 +1289,23 @@
     </div>
   </div><div class="item-row" style="opacity: 1;">
     <div style="flex:1;min-width:0">
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">החזרת הלוואה</div>
+      
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0">
+      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">16.8.26</span>
+    </div>
+    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם, כולם</div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleEventMenu(17)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="event-menu-17" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeEventMenus();addToCalendar(17)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
+        <div onclick="closeEventMenus();openEditEvent(17)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeEventMenus();deleteEvent(17)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
+  </div><div class="item-row" style="opacity: 1;">
+    <div style="flex:1;min-width:0">
       <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">נופש בעין חרוד</div>
       
     </div>
@@ -1232,79 +1338,32 @@
         <div onclick="closeEventMenus();deleteEvent(8)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
-  </div><div class="item-row" style="opacity: 0.6;">
-    <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">הופעה אהוד בנאי</div>
-      
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">18.6.26 21:00</span>
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם, כולם</div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(14)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-14" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(14)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(14)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(14)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
-  </div><div class="item-row" style="opacity: 0.6;">
-    <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">מסיבת יום הולדת לנועם</div>
-      
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">19.6.26 16:00</span>
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם</div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(9)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-9" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(9)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(9)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(9)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
-  </div><div class="item-row" style="opacity: 0.6;">
-    <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">קרן פוגשת את יוליה</div>
-      
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">21.6.26 20:30</span>
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">אמא</div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(12)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-12" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(12)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(12)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(12)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
-  </div><div class="item-row" style="opacity: 0.6;">
-    <div style="flex:1;min-width:0">
-      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">חתונה ארז עופר</div>
-      
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0">
-      <span class="tag" style="background:#FCE7F3;color:#9D174D;display:block;text-align:center;font-size:13px">26.6.26 18:00</span>
-    </div>
-    <div style="width:70px;text-align:center;flex-shrink:0;font-size:12px;color:var(--gray-text)">כולם</div>
-    <div style="position:relative;flex-shrink:0">
-      <button class="del-btn" onclick="toggleEventMenu(1)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
-      <div id="event-menu-1" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:130px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
-        <div onclick="closeEventMenus();addToCalendar(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">📅 הוסף ליומן</div>
-        <div onclick="closeEventMenus();openEditEvent(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
-        <div onclick="closeEventMenus();deleteEvent(1)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
-      </div>
-    </div>
   </div></div>
+    </div>
+
+    <!-- Calendar view -->
+    <div id="events-cal-view" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid var(--gray-border)">
+        <button onclick="changeCalMonth(-1)" style="background:none;border:0.5px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 8px;cursor:pointer;font-size:14px">›</button>
+        <span id="cal-month-title" style="font-size:14px;font-weight:500;color:var(--text)"></span>
+        <button onclick="changeCalMonth(1)" style="background:none;border:0.5px solid var(--gray-border);border-radius:var(--radius-sm);padding:4px 8px;cursor:pointer;font-size:14px">‹</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);border-bottom:0.5px solid var(--gray-border)">
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">א</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ב</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ג</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ד</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ה</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ו</div>
+        <div style="text-align:center;padding:5px 2px;font-size:11px;color:var(--gray-text)">ש</div>
+      </div>
+      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr)"></div>
+      <div id="cal-legend" style="padding:8px 14px;border-top:0.5px solid var(--gray-border);display:flex;gap:10px;flex-wrap:wrap"></div>
+    </div>
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="events-count-text">5 אירועים קרובים</span>
+      <span style="color:var(--gray-text)" id="events-count-text">6 אירועים קרובים</span>
     </div>
   </div>
 </div>
@@ -1340,11 +1399,31 @@
         <div onclick="closeWishMenus();deleteWish(5)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
       </div>
     </div>
+  </div><div class="item-row">
+    <div class="chk " onclick="toggleWish(6)" style="border-color:#CA8A04">
+      
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:15px;font-weight:500;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">💡 ריהוט מרפסת</div>
+      
+      <div style="display:flex;gap:5px;margin-top:3px;flex-wrap:wrap">
+        <span class="tag" style="background:#FEF9C3;color:#854D0E">כולם</span>
+        <span class="tag" style="background:var(--gray-bg);color:var(--gray-text)">🟡 בינוני</span>
+        
+      </div>
+    </div>
+    <div style="position:relative;flex-shrink:0">
+      <button class="del-btn" onclick="toggleWishMenu(6)" style="font-size:16px;font-weight:700;padding:2px 8px">⋮</button>
+      <div id="wish-menu-6" style="display:none;position:absolute;left:0;bottom:100%;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:100;min-width:110px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">
+        <div onclick="closeWishMenus();openEditWish(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gray-border)">✏️ ערוך</div>
+        <div onclick="closeWishMenus();deleteWish(6)" style="padding:10px 14px;font-size:14px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--red)">❌ מחק</div>
+      </div>
+    </div>
   </div></div>
 
     <!-- Summary -->
     <div class="summary-bar">
-      <span style="color:var(--gray-text)" id="wishes-count-text">1 רצונות פתוחים</span>
+      <span style="color:var(--gray-text)" id="wishes-count-text">2 רצונות פתוחים</span>
     </div>
   </div>
 </div>
@@ -2199,6 +2278,7 @@ function renderAll() {
   renderMemberList();
   renderCatSettings();
   updateCounts();
+  renderHome();
   const sel = document.getElementById('shop-prodcat-input');
   if (sel) {
     sel.innerHTML = '<option value="">קטגוריה...</option>';
@@ -2212,10 +2292,16 @@ function renderAll() {
 
 // ─── TABS ─────────────────────────────────────────────────
 function switchTab(tab) {
-  ['shop','tasks','events','wishes','travel'].forEach(t => {
-    document.getElementById('section-' + t).classList.toggle('active', t === tab);
-    document.getElementById('tab-' + t).className = 'tab-btn' + (t === tab ? ' active-' + t : '');
+  ['home','shop','tasks','events','wishes','travel'].forEach(t => {
+    const section = document.getElementById('section-' + t);
+    const tabEl = document.getElementById('tab-' + t);
+    if (section) section.classList.toggle('active', t === tab);
+    if (tabEl) {
+      tabEl.style.borderBottom = t === tab ? '2.5px solid currentColor' : 'none';
+      tabEl.style.opacity = t === tab ? '1' : '0.7';
+    }
   });
+  if (tab === 'home') renderHome();
 }
 
 // ─── CATEGORIES ───────────────────────────────────────────
@@ -3535,6 +3621,280 @@ function makeTravelRow(item) {
   return row;
 }
 
+// ─── HOME ─────────────────────────────────────────────────
+let homeWeekOffset = 0;
+const DAYS_HE = ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
+const MONTHS_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+
+function getWeekStart(offset) {
+  const today = new Date();
+  const dow = today.getDay();
+  const sunday = new Date(today);
+  sunday.setDate(today.getDate() - dow + (offset * 7));
+  sunday.setHours(0,0,0,0);
+  return sunday;
+}
+
+function changeWeek(dir) {
+  homeWeekOffset += dir;
+  renderHome();
+}
+
+function renderHome() {
+  // Date + greeting
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('he-IL', {weekday:'long', day:'numeric', month:'long'});
+  document.getElementById('home-date').textContent = dateStr;
+
+  // Weekly calendar
+  renderWeeklyCalendar();
+
+  // Urgent tasks
+  renderHomeUrgentTasks();
+
+  // Wish
+  const openWishes = state.wishes.filter(w=>!w.done);
+  document.getElementById('home-wish-text').textContent = openWishes.length > 0 ? openWishes[Math.floor(Math.random()*openWishes.length)].name : 'אין רצונות עדיין';
+}
+
+function renderWeeklyCalendar() {
+  const weekStart = getWeekStart(homeWeekOffset);
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(weekStart);
+    d.setDate(weekStart.getDate() + i);
+    days.push(d);
+  }
+
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  // Week title
+  const startStr = days[0].getDate() + ' ' + MONTHS_HE[days[0].getMonth()];
+  const endStr = days[6].getDate() + ' ' + MONTHS_HE[days[6].getMonth()];
+  document.getElementById('home-week-title').textContent = startStr + '–' + endStr;
+
+  // Day headers
+  const headersEl = document.getElementById('home-day-headers');
+  headersEl.innerHTML = '<div></div>';
+  days.forEach(d => {
+    const isToday = d.getTime() === today.getTime();
+    const div = document.createElement('div');
+    div.style.cssText = `text-align:center;padding:5px 2px;border-left:0.5px solid var(--gray-border);${isToday ? 'background:#F0F7FF;border-top:2px solid #185FA5;' : ''}`;
+    div.innerHTML = `<div style="font-size:9px;color:${isToday?'#185FA5':'var(--gray-text)'};font-weight:${isToday?'500':'400'}">${DAYS_HE[d.getDay()]}</div><div style="font-size:13px;color:${isToday?'#185FA5':'var(--text)'};font-weight:${isToday?'500':'400'}">${d.getDate()}</div>`;
+    headersEl.appendChild(div);
+  });
+
+  // Time grid — hours 7-22
+  const gridEl = document.getElementById('home-time-grid');
+  gridEl.innerHTML = '';
+  const HOUR_HEIGHT = 32;
+  const START_HOUR = 8;
+  const END_HOUR = 19;
+
+  // Build events map per day
+  const eventsByDay = {};
+  days.forEach(d => {
+    const iso = d.toISOString().split('T')[0];
+    eventsByDay[iso] = state.events.filter(e => e.date === iso);
+  });
+
+  for (let h = START_HOUR; h <= END_HOUR; h++) {
+    const row = document.createElement('div');
+    row.style.cssText = `display:grid;grid-template-columns:28px repeat(7,1fr);border-bottom:0.5px solid rgba(0,0,0,0.05);min-height:${HOUR_HEIGHT}px;position:relative`;
+
+    const timeCell = document.createElement('div');
+    timeCell.style.cssText = 'font-size:9px;color:#aaa;padding:3px 2px 0;text-align:left;line-height:1';
+    timeCell.textContent = h + ':00';
+    row.appendChild(timeCell);
+
+    days.forEach(d => {
+      const iso = d.toISOString().split('T')[0];
+      const isToday = d.getTime() === today.getTime();
+      const cell = document.createElement('div');
+      cell.style.cssText = `border-left:0.5px solid var(--gray-border);position:relative;${isToday ? 'background:#F8FBFF;' : ''}`;
+
+      // Place events that start this hour
+      (eventsByDay[iso] || []).forEach(ev => {
+        if (!ev.time) return;
+        const evHour = parseInt(ev.time.split(':')[0]);
+        const evMin = parseInt(ev.time.split(':')[1]);
+        if (evHour !== h) return;
+        const topOffset = (evMin / 60) * HOUR_HEIGHT;
+        const c = getEventColor(ev);
+        const tag = document.createElement('div');
+        tag.style.cssText = `position:absolute;top:${topOffset}px;left:2px;right:2px;min-height:36px;background:${c.bg};border-right:3px solid ${c.dark};border-radius:4px;padding:2px 4px;z-index:10;overflow:hidden`;
+        tag.innerHTML = `<div style="font-size:9px;font-weight:500;color:${c.dark};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ev.name}</div><div style="font-size:8px;color:${c.dark}">${ev.time}${ev.attendees&&ev.attendees.length?' · '+ev.attendees[0]:''}</div>`;
+        cell.appendChild(tag);
+      });
+
+      row.appendChild(cell);
+    });
+    gridEl.appendChild(row);
+  }
+
+  // Legend
+  const legendEl = document.getElementById('home-cal-legend');
+  legendEl.innerHTML = '';
+  const shown = new Set();
+  state.events.forEach(ev => {
+    const names = ev.attendees && ev.attendees.length ? ev.attendees : [];
+    names.forEach(name => {
+      if (shown.has(name)) return;
+      shown.add(name);
+      const c = name === 'כולם' ? {bg:'#DCFCE7',dark:'#166534'} : getAttendeeColor(name);
+      legendEl.innerHTML += `<div style="display:flex;align-items:center;gap:4px"><div style="width:8px;height:8px;border-radius:2px;background:${c.bg};border-left:2px solid ${c.dark}"></div><span style="font-size:10px;color:var(--gray-text)">${name}</span></div>`;
+    });
+  });
+}
+
+function renderHomeUrgentTasks() {
+  const el = document.getElementById('home-urgent-tasks');
+  const today = new Date().toISOString().split('T')[0];
+  const urgent = state.tasks.filter(t => !t.done && t.due)
+    .sort((a,b) => new Date(a.due)-new Date(b.due))
+    .slice(0,3);
+  if (urgent.length === 0) {
+    el.innerHTML = '<div style="padding:12px 14px;font-size:13px;color:var(--gray-text);text-align:center">אין משימות דחופות 🎉</div>';
+    return;
+  }
+  el.innerHTML = '';
+  urgent.forEach(task => {
+    const isOverdue = task.due < today;
+    const row = document.createElement('div');
+    row.style.cssText = 'padding:10px 14px;border-bottom:0.5px solid var(--gray-border);display:flex;align-items:center;gap:10px;cursor:pointer';
+    row.onclick = () => switchTab('tasks');
+    row.innerHTML = `
+      <div style="width:16px;height:16px;border-radius:4px;border:1.5px solid ${isOverdue?'#E24B4A':'#BA7517'};flex-shrink:0"></div>
+      <div style="flex:1;font-size:13px;color:var(--text)">${task.name}</div>
+      <span style="font-size:10px;background:${isOverdue?'#FCEBEB':'#FAEEDA'};color:${isOverdue?'#A32D2D':'#633806'};padding:2px 7px;border-radius:10px">${new Date(task.due).toLocaleDateString('he-IL',{day:'numeric',month:'numeric'})}</span>
+    `;
+    el.appendChild(row);
+  });
+}
+
+// ─── CALENDAR VIEW ────────────────────────────────────────
+let calViewMode = 'list';
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+
+const ATTENDEE_COLORS = {
+  'כולם': {bg:'#DCFCE7', dark:'#166534'},
+};
+
+function getAttendeeColor(name) {
+  if (ATTENDEE_COLORS[name]) return ATTENDEE_COLORS[name];
+  const colors = [
+    {bg:'#DBEAFE',dark:'#1D4ED8'},
+    {bg:'#FCE7F3',dark:'#9D174D'},
+    {bg:'#FEF3C7',dark:'#92400E'},
+    {bg:'#F3E8FF',dark:'#7E22CE'},
+    {bg:'#FFEDD5',dark:'#9A3412'},
+  ];
+  const idx = state.members.indexOf(name) % colors.length;
+  return colors[idx >= 0 ? idx : 0];
+}
+
+function getEventColor(ev) {
+  if (!ev.attendees || ev.attendees.length === 0) return {bg:'#F3F4F6',dark:'#6B7280'};
+  if (ev.attendees.includes('כולם')) return ATTENDEE_COLORS['כולם'];
+  return getAttendeeColor(ev.attendees[0]);
+}
+
+function setEventsView(mode) {
+  calViewMode = mode;
+  document.getElementById('events-list-view').style.display = mode === 'list' ? 'block' : 'none';
+  document.getElementById('events-cal-view').style.display = mode === 'cal' ? 'block' : 'none';
+  document.getElementById('events-view-list').style.background = mode === 'list' ? '#FCE7F3' : 'white';
+  document.getElementById('events-view-list').style.borderColor = mode === 'list' ? '#9D174D' : 'var(--gray-border)';
+  document.getElementById('events-view-list').style.color = mode === 'list' ? '#9D174D' : 'var(--gray-text)';
+  document.getElementById('events-view-cal').style.background = mode === 'cal' ? '#FCE7F3' : 'white';
+  document.getElementById('events-view-cal').style.borderColor = mode === 'cal' ? '#9D174D' : 'var(--gray-border)';
+  document.getElementById('events-view-cal').style.color = mode === 'cal' ? '#9D174D' : 'var(--gray-text)';
+  if (mode === 'cal') renderCalendar();
+}
+
+function changeCalMonth(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  document.getElementById('cal-month-title').textContent = months[calMonth] + ' ' + calYear;
+
+  const today = new Date();
+  const firstDay = new Date(calYear, calMonth, 1);
+  // Israel week starts Sunday=0, but we want Sun=0..Sat=6 aligned to א-ש
+  let startDow = firstDay.getDay(); // 0=Sun
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const daysInPrev = new Date(calYear, calMonth, 0).getDate();
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  // Cells before month start
+  for (let i = 0; i < startDow; i++) {
+    const cell = document.createElement('div');
+    cell.style.cssText = 'padding:4px;min-height:60px;border-bottom:0.5px solid var(--gray-border);border-left:0.5px solid var(--gray-border);opacity:0.4';
+    cell.innerHTML = `<span style="font-size:11px;color:var(--gray-text)">${daysInPrev - startDow + i + 1}</span>`;
+    grid.appendChild(cell);
+  }
+
+  // Month days
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+    const dayEvents = state.events.filter(e => e.date === dateStr);
+    const col = (startDow + d - 1) % 7;
+    const isLastRow = (startDow + d - 1) >= Math.floor((startDow + daysInMonth - 1) / 7) * 7;
+
+    const cell = document.createElement('div');
+    cell.style.cssText = `padding:4px;min-height:60px;${!isLastRow ? 'border-bottom:0.5px solid var(--gray-border);' : ''}border-left:0.5px solid var(--gray-border);box-sizing:border-box;${isToday ? 'border:1.5px solid #185FA5;background:#F0F7FF;' : ''}`;
+
+    const numEl = document.createElement('span');
+    numEl.style.cssText = `font-size:11px;font-weight:${isToday ? '500' : '400'};color:${isToday ? '#185FA5' : 'var(--text)'}`;
+    numEl.textContent = d;
+    cell.appendChild(numEl);
+
+    dayEvents.forEach(ev => {
+      const c = getEventColor(ev);
+      const tag = document.createElement('div');
+      tag.style.cssText = `margin-top:2px;background:${c.bg};color:${c.dark};font-size:9px;padding:2px 4px;border-radius:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer`;
+      tag.textContent = ev.name;
+      tag.title = ev.name + (ev.time ? ' ' + ev.time : '');
+      cell.appendChild(tag);
+    });
+
+    grid.appendChild(cell);
+  }
+
+  // Fill remaining cells
+  const total = startDow + daysInMonth;
+  const remainder = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let i = 1; i <= remainder; i++) {
+    const cell = document.createElement('div');
+    cell.style.cssText = 'padding:4px;min-height:60px;border-left:0.5px solid var(--gray-border);opacity:0.4';
+    cell.innerHTML = `<span style="font-size:11px;color:var(--gray-text)">${i}</span>`;
+    grid.appendChild(cell);
+  }
+
+  // Legend
+  const legend = document.getElementById('cal-legend');
+  legend.innerHTML = '';
+  const shown = new Set();
+  state.events.forEach(ev => {
+    const names = ev.attendees && ev.attendees.length ? ev.attendees : ['ללא'];
+    names.forEach(name => {
+      if (shown.has(name)) return;
+      shown.add(name);
+      const c = name === 'כולם' ? ATTENDEE_COLORS['כולם'] : getAttendeeColor(name);
+      legend.innerHTML += `<div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:${c.bg};border:1px solid ${c.dark}44"></div><span style="font-size:11px;color:var(--gray-text)">${name}</span></div>`;
+    });
+  });
+}
 // ─── COUNTS ───────────────────────────────────────────────
 function updateCounts() {
   const shopCount = state.shopItems.length;
@@ -3542,12 +3902,12 @@ function updateCounts() {
   const today = new Date().toISOString().split('T')[0];
   const eventCount = state.events.filter(e => e.date >= today).length;
   const wishCount = state.wishes.filter(w => !w.done).length;
-  const travelCount = state.travelItems.filter(i => !i.packed).length;
-  document.getElementById('shop-count').textContent = shopCount || '';
-  document.getElementById('tasks-count').textContent = taskCount || '';
-  document.getElementById('events-count').textContent = eventCount || '';
-  document.getElementById('wishes-count').textContent = wishCount || '';
-  document.getElementById('travel-count').textContent = travelCount || '';
+  const travelCount = state.travelItems.filter(i => !i.packed && !i.archived).length;
+  document.getElementById('shop-count').textContent = shopCount ? shopCount + ' פריטים' : '';
+  document.getElementById('tasks-count').textContent = taskCount ? taskCount + ' פתוחות' : '';
+  document.getElementById('events-count').textContent = eventCount ? eventCount + ' קרובים' : '';
+  document.getElementById('wishes-count').textContent = wishCount ? wishCount + ' פתוחים' : '';
+  document.getElementById('travel-count').textContent = travelCount ? travelCount + ' פריטים' : '';
 }
 
 // ─── INIT ─────────────────────────────────────────────────
