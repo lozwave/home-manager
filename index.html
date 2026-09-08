@@ -2500,7 +2500,12 @@ function addTravelItem() {
 
 function toggleTravelItem(id) {
   const item = state.travelItems.find(i => i.id === id);
-  if (item) { item.packed = !item.packed; save(); renderTravelItems(); updateCounts(); }
+  if (item) {
+    item.packed = !item.packed;
+    const searchEl = document.getElementById('travel-search');
+    if (searchEl) searchEl.value = '';
+    save(); renderTravelItems(); updateCounts();
+  }
 }
 
 function deleteTravelItem(id) {
@@ -2584,7 +2589,13 @@ function removeTravelCategory(cat) {
 
 function toggleTravelArchive(id) {
   const item = state.travelItems.find(i => i.id === id);
-  if (item) { item.archived = !item.archived; item.packed = false; save(); renderTravelItems(); updateCounts(); }
+  if (item) {
+    item.archived = !item.archived;
+    item.packed = false;
+    const searchEl = document.getElementById('travel-search');
+    if (searchEl) searchEl.value = '';
+    save(); renderTravelItems(); updateCounts();
+  }
 }
 
 function renderTravelItems() {
