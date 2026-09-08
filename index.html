@@ -2482,14 +2482,14 @@ function addTravelItem() {
   const dupActive = state.travelItems.find(i => i.name === name && i.person === person && !i.archived);
   const dupArchived = state.travelItems.find(i => i.name === name && i.person === person && i.archived);
   if (dupActive) {
-    if (!confirm(`הפריט "${name}" כבר קיים ברשימה הפעילה של ${person}. להוסיף בכל זאת?`)) return;
+    if (!confirm(`הפריט "${name}" כבר קיים ברשימה הפעילה של ${person}. להוסיף בכל זאת?`)) { document.getElementById("travel-name-input").value = ""; return; }
   } else if (dupArchived) {
-    if (!confirm(`הפריט "${name}" קיים במאגר של ${person}. להוסיף לרשימה הפעילה?`)) return;
+    if (!confirm(`הפריט "${name}" קיים במאגר של ${person}. להוסיף לרשימה הפעילה?`)) { document.getElementById("travel-name-input").value = ""; return; }
   } else {
     // Check for duplicate in other people's lists
     const dupOther = state.travelItems.find(i => i.name === name && i.person !== person);
     if (dupOther) {
-      if (!confirm(`הפריט "${name}" כבר קיים ברשימה של ${dupOther.person}. להוסיף גם ל-${person}?`)) return;
+      if (!confirm(`הפריט "${name}" כבר קיים ברשימה של ${dupOther.person}. להוסיף גם ל-${person}?`)) { document.getElementById("travel-name-input").value = ""; return; }
     }
   }
   state.travelItems.push({ id: state.nextTravelId++, name, category, person, packed: false, archived: false });
