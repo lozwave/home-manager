@@ -515,7 +515,10 @@
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap">
-      <input type="text" id="shop-name-input" placeholder="שם פריט..." onkeydown="if(event.key==='Enter')addShopItem()" style="min-width:120px">
+      <div style="flex:1;min-width:120px;position:relative">
+        <input type="text" id="shop-name-input" placeholder="שם פריט..." onkeydown="if(event.key==='Enter')addShopItem()" oninput="showShopSuggestions()" style="width:100%">
+        <div id="shop-suggestions" style="display:none;position:absolute;top:100%;right:0;left:0;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;max-height:150px;overflow-y:auto;box-shadow:0 2px 8px rgba(0,0,0,0.15)"></div>
+      </div>
       <select id="shop-prodcat-input" style="flex:1;min-width:100px;font-size:13px">
         <option value="">קטגוריה...</option>
       </select>
@@ -689,7 +692,10 @@
 
     <!-- Add item row -->
     <div class="add-row" style="flex-wrap:wrap;background:var(--gray-bg);border-bottom:1px solid var(--gray-border)">
-      <input type="text" id="travel-name-input" placeholder="פריט לארוז..." onkeydown="if(event.key==='Enter')addTravelItem()" style="flex:1;min-width:120px">
+      <div style="flex:1;min-width:120px;position:relative">
+        <input type="text" id="travel-name-input" placeholder="פריט לארוז..." onkeydown="if(event.key==='Enter')addTravelItem()" oninput="showTravelSuggestions()" style="width:100%">
+        <div id="travel-suggestions" style="display:none;position:absolute;top:100%;right:0;left:0;background:white;border:1px solid var(--gray-border);border-radius:var(--radius-sm);z-index:50;max-height:150px;overflow-y:auto;box-shadow:0 2px 8px rgba(0,0,0,0.15)"></div>
+      </div>
       <select id="travel-cat-input" style="flex:1;min-width:100px;font-size:13px;padding:7px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);font-family:'Heebo',sans-serif;direction:rtl">
         <option value="">קטגוריה...</option>
       </select>
@@ -1576,6 +1582,67 @@ function changeQty(id, delta) {
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
   save(); renderShopItems();
+}
+
+function showShopSuggestions() {
+  const input = document.getElementById('shop-name-input');
+  const el = document.getElementById('shop-suggestions');
+  const term = input.value.trim().toLowerCase();
+  if (!term) { el.style.display = 'none'; return; }
+
+  // Search in active and purchased items
+  const allItems = [
+    ...state.shopItems.map(i => ({name: i.name, status: 'לקנייה', cat: i.productCategory})),
+    ...state.purchasedItems.map(i => ({name: i.name, status: 'נרכש', cat: i.productCategory}))
+  ];
+  const matches = allItems.filter(i => i.name.toLowerCase().includes(term));
+  const unique = [...new Map(matches.map(i => [i.name, i])).values()];
+
+  if (unique.length === 0) { el.style.display = 'none'; return; }
+
+  el.innerHTML = '';
+  unique.slice(0,8).forEach(item => {
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
+    div.innerHTML = `<span>${item.name}</span><span style="font-size:10px;color:${item.status==='נרכש'?'var(--green-dark)':'var(--gray-text)'};background:${item.status==='נרכש'?'var(--green-light)':'var(--gray-bg)'};padding:1px 6px;border-radius:8px">${item.status}</span>`;
+    div.onmousedown = () => {
+      input.value = item.name;
+      el.style.display = 'none';
+    };
+    el.appendChild(div);
+  });
+  el.style.display = 'block';
+  setTimeout(() => document.addEventListener('click', () => { el.style.display = 'none'; }, {once:true}), 10);
+}
+
+function showTravelSuggestions() {
+  const input = document.getElementById('travel-name-input');
+  const el = document.getElementById('travel-suggestions');
+  const term = input.value.trim().toLowerCase();
+  const person = state.activeTravelPerson;
+  if (!term) { el.style.display = 'none'; return; }
+
+  const allItems = state.travelItems.filter(i => i.person === person);
+  const matches = allItems.filter(i => i.name.toLowerCase().includes(term));
+
+  if (matches.length === 0) { el.style.display = 'none'; return; }
+
+  el.innerHTML = '';
+  matches.slice(0,8).forEach(item => {
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
+    const status = item.packed ? 'נארז' : item.archived ? 'במאגר' : 'לארוז';
+    const statusColor = item.packed ? 'var(--green-dark)' : item.archived ? 'var(--gray-text)' : '#059669';
+    const statusBg = item.packed ? 'var(--green-light)' : item.archived ? 'var(--gray-bg)' : '#ECFDF5';
+    div.innerHTML = `<span>${item.name}</span><span style="font-size:10px;color:${statusColor};background:${statusBg};padding:1px 6px;border-radius:8px">${status}</span>`;
+    div.onmousedown = () => {
+      input.value = item.name;
+      el.style.display = 'none';
+    };
+    el.appendChild(div);
+  });
+  el.style.display = 'block';
+  setTimeout(() => document.addEventListener('click', () => { el.style.display = 'none'; }, {once:true}), 10);
 }
 
 function deleteShopItem(id) {
