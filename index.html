@@ -527,14 +527,13 @@
       <button class="add-btn green" onclick="addShopItem()">+ הוסף</button>
     </div>
 
+    <!-- Duplicate notification -->
+    <div id="shop-dup-notif" style="display:none;align-items:center;gap:8px;padding:8px 14px;background:#FEF9C3;border-bottom:1px solid #FDE68A;font-size:13px;color:#854D0E"></div>
+
     <!-- Search -->
     <div style="padding:6px 10px;border-bottom:1px solid var(--gray-border);background:var(--gray-bg)">
       <input type="text" id="shop-search" placeholder="🔍 חיפוש פריט..." oninput="renderShopItems()" style="width:100%;padding:6px 10px;border:1px solid var(--gray-border);border-radius:var(--radius-sm);font-family:'Heebo',sans-serif;font-size:13px;direction:rtl;background:white">
     </div>
-
-    <!-- Column headers -->
-
-    <!-- Items list -->
     <div id="shop-items-list"></div>
 
     <!-- Summary -->
@@ -1361,30 +1360,18 @@ async function addShopItem() {
   const duplicateShop = state.shopItems.find(i => i.name === name && i.category === state.activeCategory);
   const duplicatePurchased = state.purchasedItems.find(i => i.name === name && i.category === state.activeCategory);
   if (duplicateShop || duplicatePurchased) {
-    const location = duplicateShop ? 'ברשימת הקניות' : 'ברשימת נרכשו';
-    const proceed = confirm(`הפריט "${name}" כבר קיים ${location}. להוסיף בכל זאת?`);
-    if (!proceed) {
-      // Clear input and scroll to existing item
-      document.getElementById('shop-name-input').value = '';
-      document.getElementById('shop-qty-input').value = '1';
-      document.getElementById('shop-price-input').value = '';
-      document.getElementById('shop-prodcat-input').value = '';
-      if (duplicateShop) {
-        // Highlight existing item
-        setTimeout(() => {
-          const rows = document.querySelectorAll('#shop-items-list .item-row');
-          rows.forEach(row => {
-            if (row.textContent.includes(name)) {
-              row.scrollIntoView({behavior:'smooth', block:'center'});
-              row.style.background = '#FEF9C3';
-              setTimeout(() => row.style.background = '', 1500);
-            }
-          });
-        }, 100);
-      }
-      return;
-    }
+    // Show inline notification instead of confirm
+    const notif = document.getElementById('shop-dup-notif');
+    const msg = duplicateShop ? `"${name}" כבר ברשימת הקניות` : `"${name}" כבר ברשימת נרכשו`;
+    notif.innerHTML = `
+      <span style="flex:1">${msg}</span>
+      ${duplicateShop ? `<button onclick="purchaseItem(${duplicateShop.id});clearShopInput()" style="font-size:11px;background:var(--green);color:white;border:none;border-radius:4px;padding:3px 8px;cursor:pointer;font-family:'Heebo',sans-serif">✅ סמן כנרכש</button>` : ''}
+      <button onclick="clearShopInput()" style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 8px;cursor:pointer;font-family:'Heebo',sans-serif">ביטול</button>
+    `;
+    notif.style.display = 'flex';
+    return;
   }
+  document.getElementById('shop-dup-notif').style.display = 'none';
 
   const qty = parseInt(document.getElementById('shop-qty-input').value) || 1;
   const manualPrice = parseFloat(document.getElementById('shop-price-input').value) || null;
@@ -1649,6 +1636,16 @@ function showTravelSuggestions() {
   });
   el.style.display = 'block';
   setTimeout(() => document.addEventListener('click', () => { el.style.display = 'none'; }, {once:true}), 10);
+}
+
+function clearShopInput() {
+  document.getElementById('shop-name-input').value = '';
+  document.getElementById('shop-qty-input').value = '1';
+  document.getElementById('shop-price-input').value = '';
+  document.getElementById('shop-prodcat-input').value = '';
+  document.getElementById('shop-dup-notif').style.display = 'none';
+  const suggestionsEl = document.getElementById('shop-suggestions');
+  if (suggestionsEl) suggestionsEl.style.display = 'none';
 }
 
 function deleteShopItem(id) {
