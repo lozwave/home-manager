@@ -1579,29 +1579,37 @@ function showShopSuggestions() {
   const term = input.value.trim().toLowerCase();
   if (!term) { el.style.display = 'none'; return; }
 
-  // Search in active and purchased items
-  const allItems = [
-    ...state.shopItems.map(i => ({name: i.name, status: 'לקנייה', cat: i.productCategory})),
-    ...state.purchasedItems.map(i => ({name: i.name, status: 'נרכש', cat: i.productCategory}))
-  ];
-  const matches = allItems.filter(i => i.name.toLowerCase().includes(term));
-  const unique = [...new Map(matches.map(i => [i.name, i])).values()];
+  const shopMatches = state.shopItems.filter(i => i.name.toLowerCase().includes(term) && i.category === state.activeCategory);
+  const purchasedMatches = state.purchasedItems.filter(i => i.name.toLowerCase().includes(term) && i.category === state.activeCategory);
 
-  if (unique.length === 0) { el.style.display = 'none'; return; }
+  if (shopMatches.length === 0 && purchasedMatches.length === 0) { el.style.display = 'none'; return; }
 
   el.innerHTML = '';
-  unique.slice(0,8).forEach(item => {
+
+  shopMatches.slice(0,5).forEach(item => {
     const div = document.createElement('div');
     div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
-    div.innerHTML = `<span>${item.name}</span><span style="font-size:10px;color:${item.status==='נרכש'?'var(--green-dark)':'var(--gray-text)'};background:${item.status==='נרכש'?'var(--green-light)':'var(--gray-bg)'};padding:1px 6px;border-radius:8px">${item.status}</span>`;
+    div.innerHTML = `<span>${item.name}</span><button style="font-size:11px;background:var(--green);color:white;border:none;border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">✅ סמן כנרכש</button>`;
     div.onmousedown = (e) => {
       e.preventDefault();
-      input.value = item.name;
-      el.style.display = 'none';
-      input.focus();
+      purchaseItem(item.id);
+      clearShopInput();
     };
     el.appendChild(div);
   });
+
+  purchasedMatches.slice(0,5).forEach(item => {
+    const div = document.createElement('div');
+    div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
+    div.innerHTML = `<span style="text-decoration:line-through;color:var(--gray-text)">${item.name}</span><button style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">↩️ החזר לרשימה</button>`;
+    div.onmousedown = (e) => {
+      e.preventDefault();
+      unpurchaseItem(item.id);
+      clearShopInput();
+    };
+    el.appendChild(div);
+  });
+
   el.style.display = 'block';
   setTimeout(() => document.addEventListener('click', () => { el.style.display = 'none'; }, {once:true}), 10);
 }
