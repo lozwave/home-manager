@@ -525,6 +525,7 @@
       <input type="number" class="qty-input" id="shop-qty-input" placeholder="כמות" min="1" value="1">
       <input type="number" class="price-input" id="shop-price-input" placeholder="₪">
       <button class="add-btn green" onclick="addShopItem()">+ הוסף</button>
+      <button id="shop-mic-btn" onclick="startShopVoice()" title="הוספה בדיבור" style="background:none;border:1px solid var(--gray-border);border-radius:var(--radius-sm);padding:7px 10px;font-size:16px;cursor:pointer;flex-shrink:0">🎤</button>
     </div>
 
     <!-- Duplicate notification -->
@@ -1036,6 +1037,65 @@
     </div>
   </div>
 </div>
+
+<!-- Lock Screen -->
+<style>
+  #lock-screen {
+    position:fixed;inset:0;background:linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;align-items:center;justify-content:center;z-index:9999;
+  }
+  #lock-box {
+    background:white;border-radius:16px;padding:36px 32px;width:300px;text-align:center;
+    box-shadow:0 8px 32px rgba(0,0,0,0.25);
+  }
+  #lock-box h2 { margin:0 0 8px;font-size:22px;color:#4C1D95 }
+  #lock-box p { margin:0 0 20px;font-size:14px;color:#6B7280 }
+  #lock-password {
+    width:100%;padding:10px 14px;font-size:16px;border:2px solid #E5E7EB;
+    border-radius:8px;text-align:center;font-family:'Heebo',sans-serif;
+    box-sizing:border-box;margin-bottom:12px;direction:ltr;
+  }
+  #lock-password:focus { outline:none;border-color:#7C3AED }
+  #lock-btn {
+    width:100%;padding:11px;background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;border:none;border-radius:8px;font-size:16px;cursor:pointer;
+    font-family:'Heebo',sans-serif;font-weight:600;
+  }
+  #lock-error { color:#DC2626;font-size:13px;margin-top:8px;min-height:18px }
+</style>
+<div id="lock-screen">
+  <div id="lock-box">
+    <div style="font-size:40px;margin-bottom:12px">🏠</div>
+    <h2>ניהול הבית</h2>
+    <p>הכנס סיסמה להמשך</p>
+    <input type="password" id="lock-password" placeholder="סיסמה" onkeydown="if(event.key==='Enter')checkPassword()">
+    <button id="lock-btn" onclick="checkPassword()">כניסה</button>
+    <div id="lock-error"></div>
+  </div>
+</div>
+<script>
+  (function() {
+    const PASSWORD = 'pizi2022';
+    const WEEK = 7 * 24 * 60 * 60 * 1000;
+    try {
+      const stored = localStorage.getItem('home_auth');
+      if (stored && (Date.now() - parseInt(stored)) < WEEK) {
+        document.getElementById('lock-screen').style.display = 'none';
+      }
+    } catch(e) {}
+    window.checkPassword = function() {
+      const val = document.getElementById('lock-password').value;
+      if (val === PASSWORD) {
+        try { localStorage.setItem('home_auth', Date.now().toString()); } catch(e) {}
+        document.getElementById('lock-screen').style.display = 'none';
+      } else {
+        document.getElementById('lock-error').textContent = 'סיסמה שגויה, נסי שוב';
+        document.getElementById('lock-password').value = '';
+        document.getElementById('lock-password').focus();
+      }
+    };
+  })();
+</script>
 
 <script>
 // ─── STATE ───────────────────────────────────────────────
@@ -1589,8 +1649,14 @@ function showShopSuggestions() {
   shopMatches.slice(0,5).forEach(item => {
     const div = document.createElement('div');
     div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
-    div.innerHTML = `<span>${item.name}</span><button style="font-size:11px;background:var(--green);color:white;border:none;border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">✅ סמן כנרכש</button>`;
+    div.innerHTML = `
+      <span>${item.name}</span>
+      <div style="display:flex;gap:4px">
+        <button onmousedown="event.preventDefault();openPriceSearchByName('${item.name.replace(/'/g,"\\'")}'" style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 6px;cursor:pointer;font-family:Heebo,sans-serif">🔍</button>
+        <button style="font-size:11px;background:var(--green);color:white;border:none;border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">✅ סמן כנרכש</button>
+      </div>`;
     div.onmousedown = (e) => {
+      if (e.target.tagName === 'BUTTON') return;
       e.preventDefault();
       purchaseItem(item.id);
       clearShopInput();
@@ -1601,8 +1667,14 @@ function showShopSuggestions() {
   purchasedMatches.slice(0,5).forEach(item => {
     const div = document.createElement('div');
     div.style.cssText = 'padding:8px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--gray-border);font-size:13px';
-    div.innerHTML = `<span style="text-decoration:line-through;color:var(--gray-text)">${item.name}</span><button style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">↩️ החזר לרשימה</button>`;
+    div.innerHTML = `
+      <span style="text-decoration:line-through;color:var(--gray-text)">${item.name}</span>
+      <div style="display:flex;gap:4px">
+        <button onmousedown="event.preventDefault();openPriceSearchByName('${item.name.replace(/'/g,"\\'")}'" style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 6px;cursor:pointer;font-family:Heebo,sans-serif">🔍</button>
+        <button style="font-size:11px;background:var(--gray-bg);color:var(--text);border:1px solid var(--gray-border);border-radius:4px;padding:3px 8px;cursor:pointer;font-family:Heebo,sans-serif">↩️ החזר לרשימה</button>
+      </div>`;
     div.onmousedown = (e) => {
+      if (e.target.tagName === 'BUTTON') return;
       e.preventDefault();
       unpurchaseItem(item.id);
       clearShopInput();
@@ -1644,6 +1716,48 @@ function showTravelSuggestions() {
   });
   el.style.display = 'block';
   setTimeout(() => document.addEventListener('click', () => { el.style.display = 'none'; }, {once:true}), 10);
+}
+
+function startShopVoice() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('הדפדפן שלך לא תומך בזיהוי דיבור. נסי בכרום.');
+    return;
+  }
+  const btn = document.getElementById('shop-mic-btn');
+  const input = document.getElementById('shop-name-input');
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'he-IL';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  btn.textContent = '🔴';
+  btn.style.borderColor = 'var(--red)';
+
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript.trim();
+    input.value = text;
+    btn.textContent = '🎤';
+    btn.style.borderColor = 'var(--gray-border)';
+    input.focus();
+    showShopSuggestions();
+  };
+
+  recognition.onerror = () => {
+    btn.textContent = '🎤';
+    btn.style.borderColor = 'var(--gray-border)';
+  };
+
+  recognition.onend = () => {
+    btn.textContent = '🎤';
+    btn.style.borderColor = 'var(--gray-border)';
+  };
+
+  recognition.start();
+}
+
+function openPriceSearchByName(name) {
+  window.open('https://www.google.com/search?q=' + encodeURIComponent('מחיר ' + name), '_blank');
 }
 
 function clearShopInput() {
